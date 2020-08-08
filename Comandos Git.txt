@@ -1,0 +1,9 @@
+git init
+
+git add .
+
+git commit -m 'mi primer commit'
+
+git remote add origin https://github.com/KevsMO/Proyecto-Desarrollo-Web-II-PAC-2020.git
+
+git push -u origin master
