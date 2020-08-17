@@ -1,0 +1,23 @@
+Agregar ngBootstrap
+	ng add @ng-bootstrap/ng-bootstrap
+
+
+Agregar Angular-FontAwesome
+	ng add @fortawesome/angular-fontawesome@
+
+
+Generar componente
+	ng generate component components/componente --skipTests=true
+
+
+Crear un servicio
+	ng generate service myservice
+
+Usar el servicio
+	import { MyserviceService } from '../myservice.service';
+	constructor(protected myService: MyserviceService){ }
+	this.myService.funcionX()....
+
+
+servidor host
+	ng serve --host=0.0.0.0 --disableHostCheck=true --open

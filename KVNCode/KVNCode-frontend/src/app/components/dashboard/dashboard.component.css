@@ -1,0 +1,400 @@
+/* REGLAS GENERALES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+* { /* El selector universal CSS (*) coincide con elementos de cualquier tipo. */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+button {
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+}
+
+button,
+input {
+  border: none;
+}
+
+/* font: 16px/1.5 "Lato". El 16px/1.5 significa: 16px de size (tamaño), y 1.5 de line-height (espaciado). */
+main {
+  font: 16px/1.5 "Lato", sans-serif;
+  min-height: 100vh;
+}
+
+
+/* ESTILOS DEL SIDEBAR
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding-top: 0;
+  width: 220px;
+  color: #ffffff;
+  background: #180e0e;
+}
+
+.page-header nav {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.page-header .toggle-mob-menu {
+  display: none;
+  margin-left: 5px;
+  padding: 4px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.page-header .admin-menu {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 10px;
+}
+
+/* :nth-last-child(1) selecciona, en este caso, el primer elemento del grupo de li, contando desde el final. */
+.page-header .admin-menu li:nth-last-child(1) {
+  margin-bottom: 35px;
+}
+
+/* :last-child representa, en este caso, el ultimo elemento del grupo de li */
+.page-header .admin-menu li:last-child {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.page-header .admin-menu li > * {
+  width: 100%;
+  padding: 12px 15px;
+}
+
+.page-header .admin-menu .menu-heading h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 12px;
+  margin-top: 12px;
+  color: #a58f8f;
+}
+
+.page-header .admin-menu a,
+.page-header .admin-menu button {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.page-header .admin-menu a:hover,
+.page-header .admin-menu a:focus,
+.page-header .admin-menu button:hover,
+.page-header .admin-menu button:focus {
+  background: #130808;
+  color: #ec1848;
+  outline: none;
+}
+
+
+/* ESTILOS DE LA PAGINA DE CONTENIDO
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-content {
+  position: relative;
+  left: 220px;
+  width: calc(100% - 220px);
+  min-height: 100vh;
+  color: white;
+  background: #2c1616;
+}
+
+.search-and-user {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 50px;
+  align-items: center;
+  background: #2c1616;
+  padding: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.search-and-user form {
+  position: relative;
+}
+
+.search-and-user input[type="search"] {
+  width: 100%;
+  height: 30px;
+  font-size: 1rem;
+  padding-left: 15px;
+  background: #fff;
+  color: #333;
+  border-radius: 4px;
+  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
+}
+
+.search-and-user ::placeholder {
+  color: #180e0e;
+}
+
+.search-and-user form button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.search-and-user .admin-profile {
+  display: flex;
+  align-items: center;
+}
+
+.search-and-user .admin-profile .greeting {
+  margin-right: 0px;
+  margin-left: 20px
+}
+
+
+/* ESTILOS DEL BODY
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.mob-menu-opened .page-header .admin-menu {
+  transform: scale(1);
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* ESTILOS DEL FOOTER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+  font-size: 0.85rem;
+  text-align: center;
+  border-top: 0.5px solid rgba(190, 190, 190, 0.63);
+  background-color: transparent;
+}
+
+
+/* OTROS ESTILOS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.iconos-sidebar {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.page-header .logo {
+    display: block;
+    max-width: 160px;
+    margin: 10px 0 0 15px;
+}
+
+.puntero {
+    cursor: pointer;
+}
+
+.ace_mobile-menu {
+    display: none !important;
+}
+
+.contenido {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.btn-primary {
+    margin: 0;
+    padding: 4px 8px 4px 8px;
+    background-color: rgb(172, 24, 24);
+    border-color: rgb(172, 24, 24);
+}
+
+.btn-primary:hover {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+}
+
+.btn-primary:active {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.btn-primary:focus {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: #c60063;
+    color: #c60063;
+}
+
+.fa-user-circle {
+  font-size: 30px;
+}
+
+.fa-chevron-down {
+  color: black;
+}
+
+
+/* REGLAS DE MEDIA QUERY
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* @media screen and (max-width: 767px) */
+@media screen and (max-width: 954px) {
+  .page-header,
+  .page-content {
+    position: static;
+    width: 100%;
+  }
+   
+  .page-header {
+    padding: 10px;
+    align-items: center;
+  }
+
+  .page-header nav {
+    flex-direction: row;
+  }
+
+  .page-header .toggle-mob-menu {
+    display: block;
+  }
+
+  .page-header .admin-menu {
+    position: absolute;
+    left: 65px;
+    top: 55px;
+    margin-top: 0;
+    z-index: 5; /* Indica el orden de un elemento posicionado y sus descendientes. Cuando muchos elementos se superponen, los elementos con mayor valor z-index cubren aquellos con menor valor. */
+    border-radius: 4px;
+    background: #180e0e;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.5s;
+  }
+
+  .page-header .admin-menu li:nth-last-child(2) {
+    margin-bottom: 12px;
+  }
+  
+  .page-header .admin-menu li:last-child,
+  .search-and-user .admin-profile .greeting {
+    display: none;
+  }
+  
+  .page-content {
+    min-height: calc(100vh - 22.4vh);
+    padding-top: 0;
+  }
+
+  .page-content .grid {
+    grid-gap: 10px;
+  }
+
+  .search-and-user {
+    position: absolute;
+    left: 141px;
+    top: 7px;
+    padding: 0;
+    grid-column-gap: 5px;
+    width: calc(100% - 141px);
+    border-radius: 4px;
+    background: transparent;
+  }
+
+  .page-header .logo {
+    max-width: 80px;
+    margin: 0;
+  }
+
+  .contenido {
+    min-height: calc(100vh - 18.08vh);
+  }
+
+  .visibilidad-btn-nav {
+    display: none;
+  }
+
+  .visibilidad-btn-editor {
+    display: inline-block;
+  }
+
+  .fa-user-circle {
+    color:white;
+  }
+
+  #btn-logout {
+    margin-top: 4px;
+  }
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 955px) {
+  .collapsed .page-header {
+    width: 40px;
+  }
+
+  .collapsed .iconos-sidebar {
+    padding-left: 2px;
+  }
+
+  .collapsed .page-header .admin-menu li > * {
+    padding: 5px;
+  }
+
+  .collapsed .page-header .admin-menu li a i{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .collapsed .page-header .logo,
+  .collapsed .page-header .admin-menu span,
+  .collapsed .page-header .admin-menu .menu-heading {
+    display: none;
+  }
+
+  .collapsed .page-content {
+    left: 40px;
+    width: calc(100% - 40px);
+  }
+
+  .contenido {
+    border-top: 0.5px solid rgba(190, 190, 190, 0.63);
+    min-height: calc(100vh - 11.36vh);
+  }
+
+  .visibilidad-btn-nav {
+    display: inline-block;
+  }
+
+  .visibilidad-btn-editor {
+    display: none;
+  }
+
+  .search-and-user .admin-profile .greeting {
+    max-width: 85px;
+  }
+}

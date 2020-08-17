@@ -1,0 +1,90 @@
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 contenedor-login">
+                <div class="brand-wrapper">
+                    <a routerLink=""><img src="../../../assets/images/logo.png" alt="KVN Code" class="logo"></a>
+                </div>
+                <div class="seccion-login my-auto">
+                    <!-- Componente para Registro -->
+                    <div *ngIf="regionVisible == 'registro'" >
+                        <h1 class="login-titulo">Registrarse</h1>
+                        <form action="#!">
+                            <div class="form-group">
+                                <label for="input-nombre">Primer nombre</label>
+                                <input type="text" name="input-nombre" id="input-nombre" class="form-control" placeholder="Ingresa tu primer nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-apellido">Primer apellido</label>
+                                <input type="text" name="input-apellido" id="input-apellido" class="form-control" placeholder="Ingresa tu primer apellido">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="email@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-usuario">Nombre de usuario</label>
+                                <input type="text" name="input-usuario" id="input-usuario" class="form-control" placeholder="Crea tu nombre de usuario">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password">Contraseña</label>
+                                <div class="input-group" id="show_hide_password">
+                                    <input [type]="inputs[0]" name="password" id="password" class="form-control" placeholder="Crea tu contraseña">
+                                    <div class="input-group-addon">
+                                        <a (click)="iconoRegistro()"><fa-icon [class]="clases[0]" [icon]="iconos[0]"></fa-icon></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="input-confir-contraseña">Confirmar contraseña</label>
+                                <div class="input-group" id="show_hide_password-confirm">
+                                    <input [type]="inputs[1]" name="input-confir-contraseña" id="input-confir-contraseña" class="form-control" placeholder="Confirma tu contraseña">
+                                    <div class="input-group-addon">
+                                        <a (click)="iconoRegistro2()"><fa-icon [class]="clases[0]" [icon]="iconos[1]"></fa-icon></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <input routerLink="../dashboard" name="login" id="btn-registro" class="btn btn-block login-btn" type="button" value="Registrarse">
+                        </form>
+                        <!-- <a href="#!" class="link-pass-olvidado">Olvidaste tu contraseña?</a> -->
+                        <p class="link-registrarse">Ya tienes una cuenta?  <a (click)="verLogin()" class="text-reset"> Iniciar sesión</a></p>
+                    </div>
+
+                    <!-- Componente para Login -->
+                    <div *ngIf="regionVisible == 'login'">
+                        <h1 class="login-titulo">Iniciar sesión</h1>
+                        <form action="#!">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="email@ejemplo.com">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password">Contraseña</label>
+                                <div class="input-group" id="show_hide_password">
+                                    <input [type]="inputs[2]" name="password" id="password" class="form-control" placeholder="Ingresa tu contraseña">
+                                    <div class="input-group-addon">
+                                        <a (click)="iconoLogin()"><fa-icon [class]="clases[0]" [icon]="iconos[2]"></fa-icon></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <input routerLink="../dashboard" name="login" id="login" class="btn btn-block login-btn" type="button" value="Ingresar">
+                        </form>
+                        <!-- <a href="#!" class="link-pass-olvidado">Olvidaste tu contraseña?</a> -->
+                        <p class="link-registrarse">No tienes una cuenta?  <a (click)="verRegistro()" class="text-reset"> Regístrate aquí</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <!-- Componente para Registro -->
+                <div *ngIf="regionVisible == 'registro'">
+                    <img src="../../../assets/images/registro.jpg" alt="Imagen de Login" class="img-registro">
+                </div>
+                
+                <!-- Componente para Login -->
+                <div *ngIf="regionVisible == 'login'">
+                    <img src="../../../assets/images/login.jpg" alt="Imagen de Login" class="img-login">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

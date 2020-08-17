@@ -1,0 +1,28 @@
+<main style="position: relative;">
+    <div class="row pt-3 pl-2 pr-2 pb-3">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+            <div class="contenedor-proyectos" [ngbTooltip]="tipNueva" placement="bottom" [class]="deshabilitarBtn">
+                <ng-template #tipNueva>Crear un nuevo proyecto</ng-template>
+                <fa-icon class="my-auto mx-auto p-0" [icon]="faPlus" style="font-size: 25px; display: inline-block;"></fa-icon>
+            </div>
+        </div>
+        <div *ngFor="let proyecto of (proyectos | filter:search) as folder; let i = index" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+            <div class="contenedor-proyectos text-left" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
+                <fa-icon class="my-auto mr-2 ver-icono" [icon]="faProjectDiagram" style="font-size: 25px;"></fa-icon>
+                <p [ngbTooltip]="tipProyecto" placement="bottom" class="my-auto text-truncate mr-2">{{proyecto}}</p>
+                <fa-icon [ngbTooltip]="tipEdit" placement="bottom" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipTrash" placement="bottom" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
+            </div>
+            <ng-template id="tipProyecto" #tipProyecto>{{proyecto}}</ng-template>
+            <ng-template #tipEdit>Editar el nombre del proyecto</ng-template>
+            <ng-template #tipTrash>Eliminar proyecto (con todo y su contenido)</ng-template>
+        </div>
+    </div>
+    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="proyectos.length < 1">
+        <h3 class="my-auto mx-auto" style="color: black;">No hay ningún proyecto :C ¡Intenta crear uno!.</h3>
+    </div>
+    <div style="display: flexbox; text-align: center;" *ngIf="(((proyectos | filter:search).length <1) && (proyectos.length > 0)) || (limite == true)">
+        <h3 *ngIf="((proyectos | filter:search).length <1) && (proyectos.length > 0)" class="mt-5" style="color: black;">Proyecto no encontrado</h3>
+        <h3 *ngIf="limite == true" style="color: black;" class="mt-5">Límite de proyectos alcanzado. <br> !Mejora tu plan para crear nuevos proyectos!</h3>
+    </div>
+</main>

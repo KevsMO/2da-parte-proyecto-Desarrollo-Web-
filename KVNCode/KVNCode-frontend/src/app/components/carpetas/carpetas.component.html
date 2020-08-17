@@ -1,0 +1,27 @@
+<main>
+    <div class="row pt-3 pl-2 pr-2 pb-3">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+            <div class="contenedor-carpetas" [ngbTooltip]="tipNueva" placement="bottom">
+                <ng-template #tipNueva>Crear una nueva carpeta</ng-template>
+                <fa-icon class="my-auto mx-auto p-0" [icon]="faPlus" style="font-size: 25px; display: inline-block;"></fa-icon>
+            </div>
+        </div>
+        <div *ngFor="let carpeta of (carpetas | filter:search) as folder; let i = index" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+            <div class="contenedor-carpetas text-left" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
+                <fa-icon class="my-auto mr-2 ver-icono" [icon]="faFolder" style="font-size: 25px;"></fa-icon>
+                <p [ngbTooltip]="tipCarpeta" placement="bottom" class="my-auto text-truncate mr-2">{{carpeta}}</p>
+                <fa-icon [ngbTooltip]="tipEdit" placement="bottom" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipTrash" placement="bottom" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
+            </div>
+            <ng-template id="tipCarpeta" #tipCarpeta>{{carpeta}}</ng-template>
+            <ng-template #tipEdit>Editar el nombre de la carpeta</ng-template>
+            <ng-template #tipTrash>Eliminar carpeta (con todo y su contenido)</ng-template>
+        </div>
+    </div>
+    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="carpetas.length < 1">
+        <h3 class="my-auto mx-auto" style="color: black;">No hay ninguna carpeta :C ¡Intenta crear una!.</h3>
+    </div>
+    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="((carpetas | filter:search).length <1) && (carpetas.length > 0)">
+        <h3 class="my-auto mx-auto" style="color: black;">Carpeta no encontrada</h3>
+    </div>
+</main>

@@ -1,0 +1,200 @@
+.toggle-btn-guardar {
+    font-size: 25px;
+    color:white;
+    float: left;
+    margin-top: 7px;
+    background-color: transparent;
+}
+
+#tabla-ventanas {
+    min-height: calc(100vh - 11.68vh);
+    border-collapse: separate;
+}
+
+#titulos {
+    text-align: center;
+}
+
+#editores td {
+    border: 1px solid transparent;
+    min-width: 4.4vw;
+    overflow: hidden;
+    height: 41.6vh;
+}
+
+.tdIframe {
+    border: 1px solid transparent;
+    overflow: hidden;
+    min-height: 39.84vh;
+    height: 39.84vh;
+    padding-bottom: 6px;
+}
+
+td div{
+    height: 38.4vh;
+    width: 100%;
+}
+
+.resize-horizontal {
+    resize: horizontal; 
+}
+
+.resize-vertical {
+    resize: vertical; 
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    background-color:white;
+    border: 1px solid black;
+}
+
+#tabla-ventanas span {
+    font-size: 15px;
+}
+
+.contenedor-ace {
+    font-size: 15px !important;
+    height: 100%;
+    width: 100%;
+}
+
+.span-boton, .texto-normal {
+    font-size: 15px !important;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.menu-abierto .btns-guardar-snippet {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+}
+
+.visibilidad-btn-nav {
+    display: none;
+  }
+
+.btn-primary {
+    margin: 0;
+    padding: 4px 8px 4px 8px;
+    background-color: rgb(172, 24, 24);
+    border-color: rgb(172, 24, 24);
+}
+
+.btn-primary:hover {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+}
+
+.btn-primary:active {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.btn-primary:focus {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+/* @media screen and (max-width: 767px) */
+@media screen and (max-width: 954px) {
+    .span-boton {
+        font-size: 12px !important;
+        font-weight: bold;
+        padding: .375rem .75rem;
+        margin: 10px;
+        cursor: pointer;
+        background-color: rgb(172, 24, 24);
+        border-color: rgb(172, 24, 24);
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;        
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .span-boton:active {
+        background-color: rgb(202, 27, 27) !important;
+        border-color: rgb(202, 27, 27) !important;
+        box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+    }
+
+    .span-boton:focus {
+        background-color: rgb(202, 27, 27) !important;
+        border-color: rgb(202, 27, 27) !important;
+        box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+        outline: 0;
+    }
+
+    .span-boton:hover {
+        background-color: rgb(202, 27, 27) !important;
+        border-color: rgb(202, 27, 27) !important;
+        text-decoration: none;
+    }
+
+    #td-cssTexto, #td-jsTexto {
+        display: none;
+        resize: none;
+    }
+
+    .boton-activo {
+        background-Color: rgb(240, 21, 21);
+    }
+
+    .ventana-visible {
+        display: block !important;
+    }
+
+    .ventana-oculta{
+        display: none;
+    }
+
+    .resize-horizontal {
+        resize: none; 
+    }
+
+    .btns-guardar-snippet{
+        position: absolute;
+        left: 13px;
+        top: 67px;
+        margin-top: 0;
+        z-index: 6;
+        border-radius: 4px;
+        background: #180e0e;
+        visibility: hidden;
+        opacity: 1;
+        transform: scale(0.95);
+        padding: 20px;
+        width: 138.703px;
+        height: 144px;
+        transition: all 0.3s;
+    }
+
+    .menu-abierto .btns-guardar-snippet a{
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    #td-htmlEditor, #td-cssEditor, #td-jsEditor {
+        width: 100% !important;
+    }
+}
+
+/* @media screen and (min-width: 768px) */
+@media screen and (min-width: 955px) {
+
+    #td-htmlEditor, #td-cssEditor, #td-jsEditor {
+        display: table-cell;
+    }
+}

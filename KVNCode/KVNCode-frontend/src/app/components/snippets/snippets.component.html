@@ -1,0 +1,27 @@
+<main>
+    <div class="row pt-3 pl-2 pr-2 pb-3">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+            <div class="contenedor-snippets" [ngbTooltip]="tipNueva" placement="bottom">
+                <ng-template #tipNueva>Crear un nuevo snippet</ng-template>
+                <fa-icon class="my-auto mx-auto p-0" [icon]="faPlus" style="font-size: 25px; display: inline-block;"></fa-icon>
+            </div>
+        </div>
+        <div *ngFor="let snippet of (snippets | filter:search) as folder; let i = index" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+            <div class="contenedor-snippets text-left" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
+                <fa-icon class="my-auto mr-2 ver-icono" [icon]="faStickyNote" style="font-size: 25px;"></fa-icon>
+                <p [ngbTooltip]="tipSnippet" placement="bottom" class="my-auto text-truncate mr-2">{{snippet}}</p>
+                <fa-icon [ngbTooltip]="tipEdit" placement="bottom" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipTrash" placement="bottom" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
+            </div>
+            <ng-template id="tipSnippet" #tipSnippet>{{snippet}}</ng-template>
+            <ng-template #tipEdit>Editar el nombre del snippet</ng-template>
+            <ng-template #tipTrash>Eliminar snippet</ng-template>
+        </div>
+    </div>
+    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="snippets.length < 1">
+        <h3 class="my-auto mx-auto" style="color: black;">No hay ningun snippet :C ¡Intenta crear uno!.</h3>
+    </div>
+    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="((snippets | filter:search).length <1) && (snippets.length > 0)">
+        <h3 class="my-auto mx-auto" style="color: black;">Snippet no encontrado</h3>
+    </div>
+</main>

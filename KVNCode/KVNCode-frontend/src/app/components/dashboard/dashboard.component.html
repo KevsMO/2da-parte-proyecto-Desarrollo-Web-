@@ -1,0 +1,113 @@
+<main [class]="collapsedMenu">
+    <header class="page-header">
+        <nav>
+            <a class="my-auto">
+                <img *ngIf="anchoVentana > 954" class="logo" src="../../../assets/images/logo.png" alt="Logo KVN Code">
+                <img *ngIf="anchoVentana < 955" class="logo" src="../../../assets/images/icono.png" alt="Logo KVN Code">
+            </a>
+            <button class="toggle-mob-menu ml-3" (click)="colapsarBtnMobile()">
+                <p class="my-0" style="color: black; font-weight: bold;">
+                    <fa-icon [fixedWidth]="true" [icon]="faChevronDown" class="fa-chevron-down"></fa-icon>
+                </p>
+            </button>
+            <span style="color: white;" class="my-auto ml-1 visibilidad-btn-editor">Menú</span>
+            <ul class="admin-menu">
+                <li class="menu-heading">
+                    <h3>Desarrollo</h3>
+                </li>
+                <li (click)="cambiarPestania(0)">
+                    <a id="pestaña-desarrollar" class="puntero">
+                        <fa-icon [fixedWidth]="true" [icon]="faLaptopCode" class="iconos-sidebar"></fa-icon>
+                        <span>Desarrollar</span>
+                    </a>
+                </li>
+                <li class="menu-heading">
+                    <h3>Gestión</h3>
+                </li>
+                <li (click)="cambiarPestania(1)">
+                    <a id="pestaña-carpetas" class="puntero">
+                        <fa-icon [fixedWidth]="true" [icon]="faFolder" class="iconos-sidebar"></fa-icon>
+                        <span>Carpetas</span>
+                    </a>
+                </li>
+                <li (click)="cambiarPestania(2)">
+                    <a id="pestaña-proyectos" class="puntero">
+                        <fa-icon [fixedWidth]="true" [icon]="faProjectDiagram" class="iconos-sidebar"></fa-icon>
+                        <span>Proyectos</span>
+                    </a>
+                </li>
+                <li (click)="cambiarPestania(3)">
+                    <a id="pestaña-snippets" class="puntero">
+                        <fa-icon [fixedWidth]="true" [icon]="faStickyNote" class="iconos-sidebar"></fa-icon>
+                        <span>Snippets</span>
+                    </a>
+                </li>
+                <li class="menu-heading">
+                    <h3>Configuración</h3>
+                </li>
+                <li (click)="cambiarPestania(4)">
+                    <a id="pestaña-editar-perfil" class="puntero">
+                        <fa-icon [fixedWidth]="true" [icon]="faUserCog" class="iconos-sidebar"></fa-icon>
+                        <span>Editar perfil</span>
+                    </a>
+                </li>
+                <li (click)="cambiarPestania(5)">
+                    <a id="pestaña-planes" class="puntero">
+                        <fa-icon [fixedWidth]="true" [icon]="faDollarSign" class="iconos-sidebar"></fa-icon>
+                        <span>Planes de pago</span>
+                    </a>
+                </li>
+                <li (click)="cambiarPestania(6)">
+                    <a id="pestaña-about" class="puntero">
+                        <fa-icon [fixedWidth]="true" [icon]="faBookReader" class="iconos-sidebar mt-4"></fa-icon>
+                        <span class="mt-4">Acerca de</span>
+                    </a>
+                </li>
+                <li>
+                    <button class="collapse-btn" (click)="colapsarBtn()">
+                        <fa-icon [fixedWidth]="true" [icon]="faChevronLeft" class="iconos-sidebar" aria-hidden="true"></fa-icon>
+                        <span>Ocultar</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-content">
+        <section class="search-and-user">
+            <p class="my-auto">
+                <input *ngIf="(pestaniaActiva == 1) || (pestaniaActiva == 2) || (pestaniaActiva == 3)" [ngbTooltip]="tipSearch" type="search" (keyup)="llenarSearch($event.target.value)" (search)="llenarSearch($event.target.value)" [placeholder]="placeholderBusqueda">
+                <ng-template #tipSearch>{{placeholderBusqueda}}</ng-template>
+                <a id="btn-previa" *ngIf="pestaniaActiva == 0" (click)="cargarIframePadre()" class="btn btn-primary btn-sm ml-0 mr-auto visibilidad-btn-nav" role="button">Ejecutar JS</a>
+            </p>
+            <div class="admin-profile">
+                <div class="ml-auto mr-0" style="display: inline-flex;"> 
+                    <p class="my-auto">
+                        <a id="btn-guardar" *ngIf="pestaniaActiva == 0" class="btn btn-primary btn-sm mx-1 visibilidad-btn-nav" role="button">Guardar</a>
+                        <a id="btn-descargar" *ngIf="pestaniaActiva == 0" class="btn btn-primary btn-sm mx-1 visibilidad-btn-nav" role="button">Descargar</a>
+                        <a id="btn-snippet" *ngIf="pestaniaActiva == 0" class="btn btn-primary btn-sm mx-1 visibilidad-btn-nav" role="button">Crear Snippet</a>
+                    </p>
+                    <span class="greeting my-auto text-truncate">{{nombreUsuario}}</span>
+                    <fa-icon *ngIf="anchoVentana > 954" [fixedWidth]="true" [icon]="faUserCircle" class="fa-user-circle"></fa-icon>
+                    <p class="my-auto">
+                        <a id="btn-logout" routerLink="" class="btn btn-primary btn-sm mx-3 mr-0" role="button">Cerrar Sesión</a> 
+                    </p> 
+                </div>
+            </div>
+        </section>
+        
+        <section id="contenido" style="position: relative" class="contenido container-fluid pl-0 pr-0">
+            <app-desarrollo *ngIf="pestaniaActiva == 0" #desarrollo></app-desarrollo>
+            <app-carpetas *ngIf="pestaniaActiva == 1" #carpetas></app-carpetas>
+            <app-proyectos *ngIf="pestaniaActiva == 2" #proyectos></app-proyectos>
+            <app-snippets *ngIf="pestaniaActiva == 3" #snippets></app-snippets>
+            <app-editar-perfil *ngIf="pestaniaActiva == 4" #editarPerfil></app-editar-perfil>
+            <app-about *ngIf="pestaniaActiva == 6" #about></app-about>
+            
+        </section>
+
+        <footer class="page-footer">
+            <small *ngIf="pestaniaActiva != 6">Proyecto desarrollado por Kevin Moisés Maradiaga. UNAH, Desarrollo Web. II-PAC 2020</small>
+        </footer>
+    </section>
+</main>

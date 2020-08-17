@@ -1,0 +1,38 @@
+<main [style]="paddingTop">
+    <nav *ngIf="mostrarNav == true" id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a routerLink=""><img class="logo mr-5" src="../../../assets/images/logo.png" alt="KVN Code"></a>
+            <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+                <ul class="navbar-nav ml-auto">                                             
+                    <li class="nav-item">
+                        <a (click)="verRegistro()" id="btn-registro" class="btn btn-primary mr-5 my-2" routerLink="/login-register">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="verLogin()" id="btn-login" class="btn btn-primary my-2" routerLink="/login-register">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="contenido p-2" [style]="tamanio">
+        <div class="my-auto" style="background-color: #232323;">
+            <div class="info-propia text-center">
+                <p>UNAH</p>
+                <p>Desarrollo Web</p>
+                <p>II-PAC 2020</p>
+                <p>Proyecto desarrollado por:</p>
+                <p class="mb-5">Kevin Moisés Maradiaga</p>
+            </div>
+            <div class="gracias text-center">
+                <p class="mb-5 font-weight-bold">! Gracias por visitar esta plataforma Web :) !</p>
+            </div>
+            <div class="frases text-center">
+                <p class="mx-auto">"Elige un trabajo que te guste, y nunca tendrás que volver a trabajar en tu vida" (Confucio)</p>
+                <p>"No es que tengamos poco tiempo, es que perdemos mucho" (Séneca)</p>
+            </div>
+        </div>
+    </section>
+</main>

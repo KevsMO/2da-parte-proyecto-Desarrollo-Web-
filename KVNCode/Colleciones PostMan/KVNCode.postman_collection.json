@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "f9f82a0c-9e4f-4adf-b3d2-618a3d809b00",
+		"name": "KVNCode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener listado de usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4321/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2e0525653f5cd56e4164e4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2e0525653f5cd56e4164e4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "primerNombre",
+							"value": "Kevin",
+							"type": "text"
+						},
+						{
+							"key": "primerApellido",
+							"value": "Maradiaga",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "jnasodnasd@gg.com",
+							"type": "text"
+						},
+						{
+							"key": "nickName",
+							"value": "Kevions",
+							"type": "text"
+						},
+						{
+							"key": "contrasenia",
+							"value": "lolalolajiji",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4321/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "primerNombre",
+							"value": "Soy otro",
+							"type": "text"
+						},
+						{
+							"key": "primerApellido",
+							"value": "Ahora",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "asonsgvdfgdfg@gg.com",
+							"type": "text"
+						},
+						{
+							"key": "nickName",
+							"value": "bad dubny",
+							"type": "text"
+						},
+						{
+							"key": "contrasenia",
+							"value": "malilo02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2d831cc4725e2cd825dacb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2d831cc4725e2cd825dacb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2e079621e21319684465ee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2e079621e21319684465ee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener listado de carpetas de un usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2e0525653f5cd56e4164e3/carpetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2e0525653f5cd56e4164e3",
+						"carpetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una carpeta de un usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2e0525653f5cd56e4164e3/carpetas/5f2e0525653f5cd56e4164cb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2e0525653f5cd56e4164e3",
+						"carpetas",
+						"5f2e0525653f5cd56e4164cb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una carpeta de un usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombreCarpeta",
+							"value": "Carpeta 3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2dfc6c653f5cd56e4164c9/carpetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2dfc6c653f5cd56e4164c9",
+						"carpetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una carpeta de un usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombreCarpeta",
+							"value": "Se cambio el nombre con el webservices",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2deabe653f5cd56e4164af/carpetas/5f2deabe653f5cd56e416497",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2deabe653f5cd56e4164af",
+						"carpetas",
+						"5f2deabe653f5cd56e416497"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una carpeta de un usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2dfc6c653f5cd56e4164c9/carpetas/5f2e0313fe71df306040a2e3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2dfc6c653f5cd56e4164c9",
+						"carpetas",
+						"5f2e0313fe71df306040a2e3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los 3 archivos del iframe de un usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2e0525653f5cd56e4164e4/ventanas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2e0525653f5cd56e4164e4",
+						"ventanas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los 3 archivos del iframe de un usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "html",
+							"value": "HTML al cargar la pagina de usuario renovado",
+							"type": "text"
+						},
+						{
+							"key": "css",
+							"value": "CSS al cargar la pagina de usuario renovado",
+							"type": "text"
+						},
+						{
+							"key": "js",
+							"value": "JS al cargar la pagina de usuario renovado",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4321/usuarios/5f2e0525653f5cd56e4164e4/ventanas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4321",
+					"path": [
+						"usuarios",
+						"5f2e0525653f5cd56e4164e4",
+						"ventanas"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

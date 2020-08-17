@@ -1,0 +1,68 @@
+<main>
+   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+         <a routerLink=""><img class="logo mr-5" src="../../../assets/images/logo.png" alt="KVN Code"></a>
+         <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav mr-auto ml-3">
+               <li class="nav-item active">
+                  <a class="nav-link mr-3 my-2" href="#">Inicio 
+                     <span class="sr-only">(current)</span> 
+                  </a>
+               </li>                        
+               <li class="nav-item mr-3 my-2">
+                  <a class="nav-link" href="#caracteristicas">Características</a>
+               </li>
+               <li class="nav-item mr-3 my-2">
+                  <a class="nav-link" href="#about">Acerca de</a>
+               </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">                                             
+               <li class="nav-item">
+                  <a (click)="verRegistro()" id="btn-registro" class="btn btn-primary mr-5 my-2" routerLink="login-register">Registrarse</a>
+               </li>
+               <li class="nav-item">
+                  <a (click)="verLogin()" id="btn-login" class="btn btn-primary my-2" routerLink="login-register">Iniciar sesión</a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+
+   <header class="jumbotron jumbotron-fluid">
+      <div class="container-fluid text-center"> 
+         <h1 class="display-3">Tu Editor de Código en Línea!</h1>
+         <p class="lead pb-4 font-weight-bold">Con <span class="kvn">KVN Code</span> puedes crear tus proyectos de desarrollo web usando HTML, CSS y JavaScript.</p>
+         <p><a class="btn btn-primary btn-lg" role="button">Planes</a></p>
+      </div>
+   </header>
+
+   <section id="caracteristicas" class="container">
+      <h2 class="text-center mt-5 mb-3">Características</h2>
+      <div class="row text-center" *ngFor="let fila of filaCaracteristicas"> 
+         <div class="col-md-4 mb-4" *ngFor="let informacion of fila.informaciones">
+            <div class="card h-100">
+               <img class="card-img-top" [src]="informacion.imagen">
+               <div class="card-body">
+                  <h4 class="card-title">{{informacion.titulo}}</h4>
+                  <p class="card-text">{{informacion.texto}}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="container-fluid text-center py-4 mt-4" id="about">
+      <h2 class="display-4 pb-4 my-4">Descubre Más</h2>
+      <p class="lead pb-3">Da clic en el siguiente botón para conocer más sobre <span class="kvn">KVN Code</span>.</p>
+      <a class="btn btn-primary btn-lg mb-4" (click)="about()" role="button" routerLink="/about">Acerca de</a>
+   </section>
+
+   <footer class="py-3 bg-dark">
+      <div class="container">
+         <p class="text-center">Copyright &copy; | Clase de Desarrollo Web | II-PAC 2020 | UNAH</p>
+      </div>
+   </footer>
+</main>

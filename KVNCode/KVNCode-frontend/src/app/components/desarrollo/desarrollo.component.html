@@ -1,0 +1,43 @@
+<main [class]="collapsedBtnGuardar">
+    <table id="tabla-ventanas" class="container-fluid pl-0 pr-0">
+        <tr id="titulos">
+            <td>
+                <button *ngIf="anchoVentana < 955" class="toggle-btn-guardar" (click)="colapsarBtnGuardar()">
+                    <fa-icon [fixedWidth]="true" [icon]="faBars"></fa-icon>
+                </button>
+                <span *ngIf="anchoVentana > 954" class="texto-normal">HTML</span>
+                <span *ngIf="anchoVentana < 955" (click)="ventanaActiva(0)" [class]="botonActivo[0]" class="span-boton mx-1">HTML</span>
+                <span *ngIf="anchoVentana < 955" (click)="ventanaActiva(1)" [class]="botonActivo[1]" class="span-boton mx-1">CSS</span>
+                <span *ngIf="anchoVentana < 955" (click)="ventanaActiva(2)" [class]="botonActivo[2]" class="span-boton mx-1"> JS </span>
+                <span *ngIf="anchoVentana < 955" (click)="cargarJS()" class="span-boton mx-1">Ejecutar JS</span>
+            </td>
+            <td id="td-cssTexto">
+                <span class="texto-normal">CSS</span>
+            </td>
+            <td id="td-jsTexto">
+                <span class="texto-normal"> JS </span>
+            </td>
+        </tr>
+        <tr id="editores">
+            <td id="td-htmlEditor" #tdHtmlEditor class="resize-horizontal ventana-oculta" [class]="ventanaVisible[0]">
+                <ace-editor (keyup)="cargarIframe(false)" #htmlEditor class="contenedor-ace"></ace-editor>
+            </td>
+            <td id="td-cssEditor" #tdCssEditor class="resize-horizontal ventana-oculta" [class]="ventanaVisible[1]">
+                <ace-editor (keyup)="cargarIframe(false)" #cssEditor class="contenedor-ace"></ace-editor>
+            </td>
+            <td id="td-jsEditor" #tdJsEditor class="ventana-oculta" [class]="ventanaVisible[2]">
+                <ace-editor #jsEditor class="contenedor-ace"></ace-editor>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdIframe resize-vertical" colspan="3">
+                <iframe #iframe frameborder="0"></iframe>
+            </td>
+        </tr>
+    </table>
+    <span class="my-auto btns-guardar-snippet">
+        <a id="btn-guardar" class="btn btn-primary btn-sm mx-1 visibilidad-btn-nav" role="button">Guardar</a>
+        <a id="btn-descargar" class="btn btn-primary btn-sm mx-1 visibilidad-btn-nav" role="button">Descargar</a>
+        <a id="btn-snippet" class="btn btn-primary btn-sm mx-1 visibilidad-btn-nav" role="button">Crear Snippet</a>
+    </span>
+</main>

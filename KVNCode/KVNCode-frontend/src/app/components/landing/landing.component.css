@@ -1,0 +1,103 @@
+main {
+    font-family: "Karla", sans-serif;
+    background-color: rgba(0, 0, 0, 0.863);
+    padding-top: 56px;
+}
+
+#navbar{
+    background-color: rgb(29, 29, 29) !important;
+}
+
+.navbar-toggler{
+    background-color: rgba(206, 0, 0, 0.63) !important;
+}
+
+.logo{
+    height: 45px;
+}
+
+.jumbotron {
+    background-color: #1E1F26; 
+    background: url("../../../assets/images/hero-landing.png") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+.btn-primary {
+    background-color: rgb(172, 24, 24);
+    border-color: rgb(172, 24, 24);
+}
+
+.btn-primary:hover {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+}
+
+.btn-primary:active {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.btn-primary:focus {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: #c60063;
+    color: #c60063;
+}
+
+#about {
+    background: url("../../../assets/images/about-landing.jpeg") no-repeat center;
+    color: white;
+}
+
+#caracteristicas h2{
+    color: white;
+    font-weight: bold;
+    font-size: 2.8rem;
+}
+
+.card{
+    background-color: rgb(230, 228, 228);
+}
+
+.card-footer{
+    background-color: rgb(238, 236, 236);
+}
+
+.bg-dark{
+    background-color: black !important;
+    color: white;
+}
+
+#btn-login{
+    background-color: rgb(202, 27, 27) !important;
+}
+
+#btn-login:hover {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+}
+
+#btn-login:active {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+#btn-login:focus {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+    box-shadow: 0 0 0 0.2rem rgb(160, 5, 5) !important;
+}
+
+.kvn{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
