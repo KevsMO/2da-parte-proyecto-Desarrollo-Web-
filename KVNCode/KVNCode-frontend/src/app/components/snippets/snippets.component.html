@@ -1,27 +1,66 @@
 <main>
     <div class="row pt-3 pl-2 pr-2 pb-3">
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
-            <div class="contenedor-snippets" [ngbTooltip]="tipNueva" placement="bottom">
+            <div (click)="open(modalNuevoSnippet, 'lg')" class="contenedor-snippets" [ngbTooltip]="tipNueva" placement="bottom">
                 <ng-template #tipNueva>Crear un nuevo snippet</ng-template>
                 <fa-icon class="my-auto mx-auto p-0" [icon]="faPlus" style="font-size: 25px; display: inline-block;"></fa-icon>
             </div>
         </div>
-        <div *ngFor="let snippet of (snippets | filter:search) as folder; let i = index" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+        <div *ngFor="let nombreSnippet of (nombresSnippets | filter:search) as folder; let i = index" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
             <div class="contenedor-snippets text-left" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
                 <fa-icon class="my-auto mr-2 ver-icono" [icon]="faStickyNote" style="font-size: 25px;"></fa-icon>
-                <p [ngbTooltip]="tipSnippet" placement="bottom" class="my-auto text-truncate mr-2">{{snippet}}</p>
-                <fa-icon [ngbTooltip]="tipEdit" placement="bottom" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
-                <fa-icon [ngbTooltip]="tipTrash" placement="bottom" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
+                <p [ngbTooltip]="tipSnippet" placement="bottom" class="my-auto text-truncate mr-2">{{nombreSnippet}}</p>
+                <fa-icon [ngbTooltip]="tipEdit" placement="left" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipTrash" placement="left" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
             </div>
-            <ng-template id="tipSnippet" #tipSnippet>{{snippet}}</ng-template>
+            <ng-template id="tipSnippet" #tipSnippet>{{nombreSnippet}}</ng-template>
             <ng-template #tipEdit>Editar el nombre del snippet</ng-template>
             <ng-template #tipTrash>Eliminar snippet</ng-template>
         </div>
     </div>
-    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="snippets.length < 1">
+    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="nombresSnippets.length < 1">
         <h3 class="my-auto mx-auto" style="color: black;">No hay ningun snippet :C ¡Intenta crear uno!.</h3>
     </div>
-    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="((snippets | filter:search).length <1) && (snippets.length > 0)">
+    <div style="height:calc(88.48vh - 97px); display: flex;" *ngIf="((nombresSnippets | filter:search).length <1) && (nombresSnippets.length > 0)">
         <h3 class="my-auto mx-auto" style="color: black;">Snippet no encontrado</h3>
     </div>
 </main>
+
+<!-- Modal nuevo snippet -->
+<ng-template #modalNuevoSnippet let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crear Snippet</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <form [formGroup]="formSnippet">
+                    <label for="input-nombre">Nombre del snippet</label>
+                    <input type="text" formControlName="nombreSnippet" required name="input-nombre" class="form-control" [ngClass]="{'input-error': formSnippet.get('nombreSnippet').invalid && (formSnippet.get('nombreSnippet').dirty || formSnippet.get('nombreSnippet').touched)}" placeholder="Ingresa el nombre del snippet">
+                    <!-- Validaciones -->
+                    <div *ngIf="formSnippet.get('nombreSnippet').invalid && (formSnippet.get('nombreSnippet').dirty || formSnippet.get('nombreSnippet').touched)">
+                        <span style="font-size: 1rem" *ngIf="formSnippet.get('nombreSnippet').errors.required" class="text-danger">Error: el nombre es requerido<br></span>
+                        <span style="font-size: 1rem" *ngIf="formSnippet.get('nombreSnippet').invalid" class="text-danger">Error: el nombre debe tener 3 o más caracteres</span>
+                    </div>
+
+                    <label for="input-extension">Extensión del snippet (no colocar punto al inicio)</label>
+                    <input (keyup)="modo()" type="text" formControlName="extension" required name="input-extension" class="form-control" [ngClass]="{'input-error': formSnippet.get('extension').invalid && (formSnippet.get('extension').dirty || formSnippet.get('extension').touched)}" placeholder="Ingresa la extensión (sin el punto - . - inicial)">
+                    <!-- Validaciones -->
+                    <div *ngIf="formSnippet.get('extension').invalid && (formSnippet.get('extension').dirty || formSnippet.get('extension').touched)">
+                        <span style="font-size: 1rem" *ngIf="formSnippet.get('extension').errors.required" class="text-danger">Error: la extensión es requerido<br></span>
+                    </div>
+
+                    <ace-editor (keyUp)="modo()" #editor class="contenedor-ace mt-3" style="height: 200px;" ></ace-editor>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="modo()">Guardar</button>
+    </div>
+</ng-template>
+<!-- Fin modal nuevo snippet -->

@@ -6,13 +6,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
-                <ul class="navbar-nav ml-auto">                                             
-                    <li class="nav-item">
-                        <a (click)="verRegistro()" id="btn-registro" class="btn btn-primary mr-5 my-2" routerLink="/login-register">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a (click)="verLogin()" id="btn-login" class="btn btn-primary my-2" routerLink="/login-register">Iniciar sesión</a>
-                    </li>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="display: flex;">
+                        <a *ngIf="!authService.isLoggedIn" (click)="verRegistro()" id="btn-registro" class="btn btn-primary mr-5 my-2" routerLink="../login-register">Registrarse</a>
+                        <span class="mr-5 greeting mt-3 text-truncate" *ngIf="authService.isLoggedIn">{{nickName}}</span>
+                     </li>
+                     <li class="nav-item">
+                        <a (click)="verLogin()" *ngIf="!authService.isLoggedIn" id="btn-login" class="btn btn-primary my-2" routerLink="../login-register">Iniciar sesión</a>
+                        <a (click)="verDashboard()" *ngIf="authService.isLoggedIn" id="btn-dashboard" class="btn btn-primary my-2">Dashboard</a>
+                     </li>
                 </ul>
             </div>
         </div>

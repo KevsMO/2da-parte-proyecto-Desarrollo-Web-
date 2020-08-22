@@ -54,3 +54,9 @@ fa-icon {
         display: inline-block;
     }
 }
+
+.contenedor-ace {
+    font-size: 15px !important;
+    height: 100%;
+    width: 100%;
+}

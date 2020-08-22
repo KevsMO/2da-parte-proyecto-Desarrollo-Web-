@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild, HostListener, OnDestroy, ElementRef } from '@angular/core';
 import { faUserCircle, faChevronDown, faLaptopCode, faFolder, faProjectDiagram, faStickyNote, faUserCog, faDollarSign, faBookReader, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+
 import { DesarrolloComponent } from '../desarrollo/desarrollo.component'
 import { CarpetasComponent } from '../carpetas/carpetas.component'
 import { ProyectosComponent } from '../proyectos/proyectos.component'
 import { SnippetsComponent } from '../snippets/snippets.component'
-import { AboutComponent } from '../about/about.component'
+
 import { MyserviceService } from '../../myservice.service'
+import { ActivatedRoute } from '@angular/router';
+import { UsuariosService } from './../../services/usuarios.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,21 +21,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
   @ViewChild(CarpetasComponent) carpetas: CarpetasComponent;
   @ViewChild(ProyectosComponent) proyectos: ProyectosComponent;
   @ViewChild(SnippetsComponent) snippets: SnippetsComponent;
-  @ViewChild(AboutComponent) about: AboutComponent;
 
-  cargarIframePadre(){
-    this.desarrollo.cargarJS();
-  }
-
+  usuarioActual:any = {};
   constructor(
-    protected myService: MyserviceService
+    protected myService: MyserviceService,
+    public authService: UsuariosService,
+    private actRoute: ActivatedRoute
   ) {
-
+    let id = this.actRoute.snapshot.paramMap.get('id');
+    this.authService.obtenerUnUsuario(id).subscribe(res => {
+      this.usuarioActual = res.msg;
+      let datos = {_id: res.msg._id, nickName: res.msg.nickName, plan: res.msg.plan};
+      localStorage.setItem('datos', JSON.stringify(datos));
+    });
   }
 
-  pestaniaActiva = 4;
+ cerrarSesion() {
+  this.authService.doLogout();
+}
 
-  ngOnInit(): void { }
+  pestaniaActiva;
+
+  ngOnInit(): void {
+    this.cambiarPestania(3);
+  }
 
   ngOnDestroy() {
     this.myService.mostrarElementosNav = true;
@@ -83,6 +95,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.pestaniaActiva == 0 && id != 0) {this.desarrollo.guardarValorEditores();}
     this.pestaniaActiva = id;
     this.myService.mostrarElementosNav = false;
+    this.myService.planesDesdeLanding = false;
     this.placeholderBusqueda = this.valoresPlaceholder[id];  
   }
 
@@ -98,5 +111,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     else if (this.pestaniaActiva == 3) this.snippets.search = value;
   }
 
-  nombreUsuario = 'Usuario';
+  cargarIframePadre(){
+    this.desarrollo.cargarJS();
+  }
 }

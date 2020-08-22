@@ -10,8 +10,8 @@
             <div class="contenedor-carpetas text-left" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
                 <fa-icon class="my-auto mr-2 ver-icono" [icon]="faFolder" style="font-size: 25px;"></fa-icon>
                 <p [ngbTooltip]="tipCarpeta" placement="bottom" class="my-auto text-truncate mr-2">{{carpeta}}</p>
-                <fa-icon [ngbTooltip]="tipEdit" placement="bottom" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
-                <fa-icon [ngbTooltip]="tipTrash" placement="bottom" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipEdit" placement="left" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipTrash" placement="left" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
             </div>
             <ng-template id="tipCarpeta" #tipCarpeta>{{carpeta}}</ng-template>
             <ng-template #tipEdit>Editar el nombre de la carpeta</ng-template>

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MyserviceService } from '../../myservice.service';
 
+import { UsuariosService } from './../../services/usuarios.service';
+
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -9,11 +13,24 @@ import { MyserviceService } from '../../myservice.service';
 export class AboutComponent implements OnInit {
 
   constructor(
-    protected myService: MyserviceService
+    protected myService: MyserviceService,
+    public authService: UsuariosService,
+    public router: Router
   ) { }
 
+  nickName:string;
+  id:string;
   ngOnInit(): void {
-    this.visualizarNav(this.myService.mostrarElementosNav)
+    this.visualizarNav(this.myService.mostrarElementosNav);
+    if(this.authService.isLoggedIn){
+      let datos = JSON.parse(localStorage.getItem('datos'));
+      this.nickName = datos.nickName;
+      this.id = datos._id;
+    }
+  }
+  
+  verDashboard() {
+    this.router.navigate(['dashboard/' + this.id]);
   }
 
   verRegistro(){

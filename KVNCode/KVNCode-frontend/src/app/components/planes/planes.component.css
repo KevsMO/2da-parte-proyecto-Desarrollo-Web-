@@ -1,0 +1,121 @@
+main {
+    font-family: "Karla", sans-serif;
+    background-color: rgba(0, 0, 0, 0.863);
+}
+
+main * {
+    box-sizing: border-box;
+}
+
+#navbar{
+    background-color: rgb(29, 29, 29) !important;
+}
+
+.navbar-toggler{
+    background-color: rgba(206, 0, 0, 0.63) !important;
+}
+
+.logo{
+    height: 45px;
+}
+
+.btn-primary {
+    background-color: rgb(172, 24, 24);
+    border-color: rgb(172, 24, 24);
+}
+
+.btn-primary:hover {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+}
+
+.btn-primary:active {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.btn-primary:focus {
+    background-color: rgb(202, 27, 27) !important;
+    border-color: rgb(202, 27, 27) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.bg-dark{
+    background-color: black !important;
+    color: white;
+}
+
+.btn-login{
+    background-color: rgb(202, 27, 27) !important;
+}
+
+.btn-login:hover {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+}
+
+.btn-login:active {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+.btn-login:focus {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+    box-shadow: 0 0 0 0.2rem rgb(160, 5, 5) !important;
+}
+
+#btn-login{
+    background-color: rgb(202, 27, 27) !important;
+}
+
+#btn-login:hover {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+}
+
+#btn-login:active {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+    box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
+}
+
+#btn-login:focus {
+    background-color: rgb(214, 30, 30) !important;
+    border-color: rgb(214, 30, 30) !important;
+    box-shadow: 0 0 0 0.2rem rgb(160, 5, 5) !important;
+}
+
+.contenido {
+    color:white;
+    vertical-align: middle;
+    display: flex;
+    background-color: #232323;
+}
+
+.container-fluid {
+    width: 832px;
+    min-width: 208px;
+    max-width: 832px;
+}
+
+.dimensiones {
+    height: 300px;
+    background-color: white;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.greeting {
+    max-width: 85px;
+    font: 20px "Lato", sans-serif;
+}
+
+@media screen and (max-width: 576px) {
+}
+
+@media screen and (min-width: 577px) {
+}

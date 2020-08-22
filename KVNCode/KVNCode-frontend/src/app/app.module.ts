@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,11 @@ import { FilterPipe } from 'src/app/filter.pipe';
 import { AboutComponent } from './components/about/about.component';
 import { SnippetsComponent } from './components/snippets/snippets.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
+import { PlanesComponent } from './components/planes/planes.component';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/authconfig.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +36,8 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
     AboutComponent,
     ProyectosComponent,
     SnippetsComponent,
-    EditarPerfilComponent
+    EditarPerfilComponent,
+    PlanesComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +45,17 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
     NgbModule,
     FontAwesomeModule,
     AceEditorModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,40 @@
+<main [style]="paddingTop">
+    <nav *ngIf="mostrarNav == true" id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a routerLink=""><img class="logo mr-5" src="../../../assets/images/logo.png" alt="KVN Code"></a>
+            <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+                <ul class="navbar-nav ml-auto">                                             
+                    <li class="nav-item" style="display: flex;">
+                        <a *ngIf="!authService.isLoggedIn" (click)="verRegistro()" id="btn-registro" class="btn btn-primary mr-5 my-2" routerLink="../login-register">Registrarse</a>
+                        <span class="mr-5 greeting mt-3 text-truncate" *ngIf="authService.isLoggedIn">{{nickName}}</span>
+                     </li>
+                     <li class="nav-item">
+                        <a (click)="verLogin()" *ngIf="!authService.isLoggedIn" id="btn-login" class="btn btn-primary my-2" routerLink="../login-register">Iniciar sesión</a>
+                        <a (click)="verDashboard()" *ngIf="authService.isLoggedIn" id="btn-dashboard" class="btn btn-primary my-2">Dashboard</a>
+                     </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="contenido p-2" [style]="tamanio">
+        <div class="container-fluid my-auto mx-auto">
+            <div class="row">
+                <div *ngFor="let plan of planes" class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 p-0 m-1 dimensiones mx-auto my-2 text-center">
+                    <div style="height: 75px; background-color: rgb(211, 211, 211);">
+                        <h2 class="mb-0" style="color:#571313;">{{plan.nombre}} <span *ngIf="(planUsuario == plan.nombre.toLowerCase()) && authService.isLoggedIn" style="font-size: 1rem;"> (Actual)</span></h2>
+                        <h3 class="mb-0 font-weight-bold" style="color: red;"><span>{{plan.precio}}</span>$/mes</h3>
+                    </div>
+                    <h4 class="mt-3" style="color: black">Límite de proyectos:</h4>
+                    <h4 class="mt-3 font-weight-bold" style="color: black">{{plan.limite}}</h4>
+                    <hr>
+                    <a *ngIf="(planUsuario != plan.nombre.toLowerCase()) && authService.isLoggedIn" class="btn btn-primary my-2" (click)="cambiarPlan(plan.nombre)">Obtener</a>
+                    <button *ngIf="(planUsuario == plan.nombre.toLowerCase()) && authService.isLoggedIn" class="btn btn-primary my-2" disabled>Obtener</button>
+                    <a *ngIf="!authService.isLoggedIn" (click)="verLogin()" class="btn btn-primary my-2 btn-login" routerLink="../login-register">Iniciar sesión</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

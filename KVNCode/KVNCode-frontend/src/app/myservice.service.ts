@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class MyserviceService {
 
-  constructor() { }
+  constructor() {  }
 
   regionVisible:string = 'login';
 
@@ -20,4 +20,6 @@ export class MyserviceService {
   }
 
   mostrarElementosNav:boolean = true;
+
+  planesDesdeLanding:boolean = true;
 }

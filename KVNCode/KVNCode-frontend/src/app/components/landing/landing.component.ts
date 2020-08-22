@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
 import { MyserviceService } from '../../myservice.service';
+import { UsuariosService } from './../../services/usuarios.service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -9,10 +14,25 @@ import { MyserviceService } from '../../myservice.service';
 export class LandingComponent implements OnInit {
 
   constructor(
-    protected myService: MyserviceService
+    protected myService: MyserviceService,
+    public authService: UsuariosService,
+    public router: Router
   ) { }
 
+  faUserCircle = faUserCircle;
+
+  nickName:string;
+  id:string;
   ngOnInit(): void {
+    if(this.authService.isLoggedIn){
+      let datos = JSON.parse(localStorage.getItem('datos'));
+      this.nickName = datos.nickName;
+      this.id = datos._id;
+    }
+  }
+  
+  verDashboard() {
+    this.router.navigate(['dashboard/' + this.id]);
   }
 
   verRegistro(){
@@ -31,17 +51,17 @@ export class LandingComponent implements OnInit {
         {
           titulo: 'Planes Accesibles',
           texto: 'Contamos con excelentes planes a un bajo precio para que puedas realizar más y más proyectos!',
-          imagen: '../../../assets/images/hero-landing.png'
+          imagen: '../../../assets/images/planes.png'
         },
         {
           titulo: 'Creación de Carpetas',
           texto: 'Puedes crear una o varias carpetas para que tus proyectos estén bien organizados y los encuentres fácilmente!',
-          imagen: '../../../assets/images/hero-landing.png'
+          imagen: '../../../assets/images/carpetas.png'
         },
         {
           titulo: 'Sintaxis Coloreada',
           texto: 'Con el sistema de sintaxis coloreada, puedes identificar de forma rápida las expresiones de los lenguajes que estas utilizando!',
-          imagen: '../../../assets/images/hero-landing.png'
+          imagen: '../../../assets/images/sintaxis.png'
         }
       ]
     },
@@ -60,7 +80,7 @@ export class LandingComponent implements OnInit {
         {
           titulo: 'Full Responsive',
           texto: 'No importa desde que dispositivo estés trabajando. La plataforma se adapta a cualquier tamaño de pantalla!',
-          imagen: '../../../assets/images/hero-landing.png'
+          imagen: '../../../assets/images/responsive.png'
         }
       ]
     }
@@ -68,5 +88,10 @@ export class LandingComponent implements OnInit {
 
   about() {
     this.myService.mostrarElementosNav = true;
+  }
+
+  planes() {
+    this.myService.mostrarElementosNav = true;
+    this.myService.planesDesdeLanding = true;
   }
 }

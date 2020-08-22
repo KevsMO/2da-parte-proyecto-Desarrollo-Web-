@@ -101,3 +101,8 @@ main {
     font-weight: bold;
     font-size: 1.5rem;
 }
+
+.greeting {
+    max-width: 85px;
+    font: 20px "Lato", sans-serif;
+}

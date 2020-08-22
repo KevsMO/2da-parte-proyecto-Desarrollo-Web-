@@ -9,7 +9,7 @@
                 <span *ngIf="anchoVentana < 955" (click)="ventanaActiva(0)" [class]="botonActivo[0]" class="span-boton mx-1">HTML</span>
                 <span *ngIf="anchoVentana < 955" (click)="ventanaActiva(1)" [class]="botonActivo[1]" class="span-boton mx-1">CSS</span>
                 <span *ngIf="anchoVentana < 955" (click)="ventanaActiva(2)" [class]="botonActivo[2]" class="span-boton mx-1"> JS </span>
-                <span *ngIf="anchoVentana < 955" (click)="cargarJS()" class="span-boton mx-1">Ejecutar JS</span>
+                <span *ngIf="anchoVentana < 955" (click)="cargarJS()" class="span-boton mx-1">Visualizar</span>
             </td>
             <td id="td-cssTexto">
                 <span class="texto-normal">CSS</span>
@@ -20,10 +20,10 @@
         </tr>
         <tr id="editores">
             <td id="td-htmlEditor" #tdHtmlEditor class="resize-horizontal ventana-oculta" [class]="ventanaVisible[0]">
-                <ace-editor (keyup)="cargarIframe(false)" #htmlEditor class="contenedor-ace"></ace-editor>
+                <ace-editor (blur)="cargarIframe(false)" #htmlEditor class="contenedor-ace"></ace-editor>
             </td>
             <td id="td-cssEditor" #tdCssEditor class="resize-horizontal ventana-oculta" [class]="ventanaVisible[1]">
-                <ace-editor (keyup)="cargarIframe(false)" #cssEditor class="contenedor-ace"></ace-editor>
+                <ace-editor (blur)="cargarIframe(false)" #cssEditor class="contenedor-ace"></ace-editor>
             </td>
             <td id="td-jsEditor" #tdJsEditor class="ventana-oculta" [class]="ventanaVisible[2]">
                 <ace-editor #jsEditor class="contenedor-ace"></ace-editor>

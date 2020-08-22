@@ -1,18 +1,36 @@
-var mongoose = require('mongoose');
-const { json } = require('body-parser');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const uniqueValidator = require('mongoose-unique-validator');
 
-var esquema = new mongoose.Schema(
-    {
-        primerNombre: String,
-        primerApellido: String,
-        email: String,
-        nickName: String,
-        contrasenia: String,
-        plan: String,
-        carpetas: Array,
-        snippets: Array,
-        ventanas: Object
+let userSchema = new Schema(
+{
+    primerNombre: String,
+    primerApellido: String,
+    email: {
+        type: String,
+        unique: true
+    },
+    nickName: String,
+    password: String,
+    plan: String,
+    carpetas: Array,
+    snippets: [
+        {
+            _id: mongoose.Types.ObjectId,
+            nombreSnippet: String,
+            extension: String,
+            contenidoSnippet: String
+        }
+    ],
+    ventanas: {
+        html: String,
+        css: String,
+        js: String
     }
-);
+},
+{
+    collection: 'usuarios'
+})
 
-module.exports = mongoose.model('usuarios', esquema);
+userSchema.plugin(uniqueValidator, { message: 'El email ya está en uso.' });
+module.exports = mongoose.model('Usuario', userSchema)

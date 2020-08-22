@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+
 import { MyserviceService } from '../../myservice.service';
-import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
+import { UsuariosService } from '../../services/usuarios.service';
+import { Router } from '@angular/router';
+
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -10,8 +15,44 @@ import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 export class RegistroComponent implements OnInit {
 
   constructor(
-    protected myService: MyserviceService
+    protected myService: MyserviceService,
+    public authService: UsuariosService,
+    public router: Router
   ) { }
+
+  patronCorreo = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  formularioRegistro = new FormGroup({
+    primerNombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    primerApellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.pattern(this.patronCorreo)]),
+    nickName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    verificarPassword: new FormControl('', [Validators.required])
+  });
+
+  registarUsuario() {
+    this.authService.registrarse(this.formularioRegistro.value).subscribe(
+      (res) => {
+        if (res.result) {
+          this.formularioRegistro.reset();
+          this.router.navigate(['login-register']); 
+        }
+      },
+      (error) => {
+        window.alert(error.message);
+      }
+    );
+  }
+
+  formularioLogin = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.pattern(this.patronCorreo)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(7)]),
+  });
+
+  loginUsuario() {
+    this.authService.ingresar(this.formularioLogin.value);
+  }
 
   ngOnInit(): void { }
 

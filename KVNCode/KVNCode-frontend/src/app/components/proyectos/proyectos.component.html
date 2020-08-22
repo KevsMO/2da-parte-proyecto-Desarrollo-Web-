@@ -10,8 +10,8 @@
             <div class="contenedor-proyectos text-left" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
                 <fa-icon class="my-auto mr-2 ver-icono" [icon]="faProjectDiagram" style="font-size: 25px;"></fa-icon>
                 <p [ngbTooltip]="tipProyecto" placement="bottom" class="my-auto text-truncate mr-2">{{proyecto}}</p>
-                <fa-icon [ngbTooltip]="tipEdit" placement="bottom" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
-                <fa-icon [ngbTooltip]="tipTrash" placement="bottom" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipEdit" placement="left" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipTrash" placement="left" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
             </div>
             <ng-template id="tipProyecto" #tipProyecto>{{proyecto}}</ng-template>
             <ng-template #tipEdit>Editar el nombre del proyecto</ng-template>

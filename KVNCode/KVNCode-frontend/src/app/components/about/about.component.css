@@ -78,6 +78,11 @@ main * {
     margin-bottom: 0;
 }
 
+.greeting {
+    max-width: 85px;
+    font: 20px "Lato", sans-serif;
+}
+
 @media screen and (max-width: 576px) {
     .info-propia {
         font-size: 22px;

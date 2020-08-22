@@ -1,7 +1,7 @@
 <main>
    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-         <a routerLink=""><img class="logo mr-5" src="../../../assets/images/logo.png" alt="KVN Code"></a>
+         <a routerLink="" style="cursor: default"><img class="logo mr-5" src="../../../assets/images/logo.png" alt="KVN Code"></a>
          <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
          </button>
@@ -20,11 +20,13 @@
                </li>
             </ul>
             <ul class="navbar-nav ml-auto">                                             
-               <li class="nav-item">
-                  <a (click)="verRegistro()" id="btn-registro" class="btn btn-primary mr-5 my-2" routerLink="login-register">Registrarse</a>
+               <li class="nav-item" style="display: flex;">
+                  <a *ngIf="!authService.isLoggedIn" (click)="verRegistro()" id="btn-registro" class="btn btn-primary mr-5 my-2" routerLink="login-register">Registrarse</a>
+                  <span class="mr-5 greeting mt-3 text-truncate" *ngIf="authService.isLoggedIn">{{nickName}}</span>
                </li>
                <li class="nav-item">
-                  <a (click)="verLogin()" id="btn-login" class="btn btn-primary my-2" routerLink="login-register">Iniciar sesión</a>
+                  <a (click)="verLogin()" *ngIf="!authService.isLoggedIn" id="btn-login" class="btn btn-primary my-2" routerLink="login-register">Iniciar sesión</a>
+                  <a (click)="verDashboard()" *ngIf="authService.isLoggedIn" id="btn-dashboard" class="btn btn-primary my-2">Dashboard</a>
                </li>
             </ul>
          </div>
@@ -35,7 +37,7 @@
       <div class="container-fluid text-center"> 
          <h1 class="display-3">Tu Editor de Código en Línea!</h1>
          <p class="lead pb-4 font-weight-bold">Con <span class="kvn">KVN Code</span> puedes crear tus proyectos de desarrollo web usando HTML, CSS y JavaScript.</p>
-         <p><a class="btn btn-primary btn-lg" role="button">Planes</a></p>
+         <p><a routerLink="/planes" (click)="planes()" class="btn btn-primary btn-lg" role="button">Planes</a></p>
       </div>
    </header>
 

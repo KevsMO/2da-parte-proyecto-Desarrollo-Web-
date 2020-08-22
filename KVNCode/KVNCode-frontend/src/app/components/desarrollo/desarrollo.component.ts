@@ -15,8 +15,6 @@ export class DesarrolloComponent implements OnInit {
     protected myService: MyserviceService
   ) { }
 
-  ngOnInit(): void { }
-
   faBars = faBars;
 
   @ViewChild('htmlEditor') htmlEditor;
@@ -60,8 +58,6 @@ export class DesarrolloComponent implements OnInit {
 
     this.obtenerValorEditores();
 
-    this.cargarIframe(false);
-
     this.resizeSensor = new ResizeSensor(this.tdHtmlEditor.nativeElement, () => {
       this.resizeEditores();
     });
@@ -73,6 +69,9 @@ export class DesarrolloComponent implements OnInit {
     this.resizeSensor = new ResizeSensor(this.tdJsEditor.nativeElement, () => {
       this.resizeEditores();
     });
+    
+    this.jsEditor.value = "document.write('Probando :3')";
+    this.cargarJS();
   } 
 
   resizeEditores(){
@@ -104,7 +103,6 @@ export class DesarrolloComponent implements OnInit {
   };
 
   cargarJS(){
-    this.cargarIframe(true);
     this.cargarIframe(true);
   }
 
@@ -148,6 +146,10 @@ export class DesarrolloComponent implements OnInit {
     this.htmlEditor.value = this.myService.htmlService;
     this.cssEditor.value = this.myService.cssService;
     this.jsEditor.value = this.myService.jsService;
+  }
+
+  ngOnInit(): void {
+    
   }
 }
 // <h1 id="prueba">Hola</h1>

@@ -22,7 +22,9 @@ main *{
 
 .seccion-login {
     background-color: #232323 !important;
-    width: 300px;
+    width: 100%;
+    max-width: 600px;
+    min-width: 270px;
 }
 
 .seccion-login label {
@@ -81,6 +83,14 @@ main *{
     box-shadow: 0 0 0 0.2rem rgb(128, 4, 4) !important;
 }
 
+.btn-editar {
+    color: #fff;
+    background-color: rgb(172, 24, 24);
+    border-color: rgb(172, 24, 24);
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
 .fa-eye-slash{
     color:rgb(216, 216, 216) !important;
     font-size: 1.2rem !important;
@@ -93,4 +103,8 @@ main *{
 
 .fa-eye-slash:hover, .fa-eye:hover{
     font-size: 1.35rem !important;
+}
+
+.deshabilitar {
+    color: rgb(131, 128, 128) !important;
 }

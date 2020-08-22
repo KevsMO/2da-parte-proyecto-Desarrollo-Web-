@@ -1,0 +1,648 @@
+{
+	"info": {
+		"_postman_id": "5c6b06c3-b1d0-4736-937f-a5685f7dad57",
+		"name": "KVNCode(Separado)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Registrarse (Crear usuario)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "primerNombre",
+									"value": "Kevin",
+									"type": "text"
+								},
+								{
+									"key": "primerApellido",
+									"value": "Maradiaga",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jnasodnasd@gg.com",
+									"type": "text"
+								},
+								{
+									"key": "nickName",
+									"value": "Kevions",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "lolalolajiji",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/registrarse",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"registrarse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingresar (Login)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "correo123@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "asd.123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/ingresar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"ingresar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3bcd8dae840619b0f53b88",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3bcd8dae840619b0f53b88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar un usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "primerNombre",
+									"value": "Soy otro",
+									"type": "text"
+								},
+								{
+									"key": "primerApellido",
+									"value": "Ahora",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "asonsgvdfgdfg@gg.com",
+									"type": "text"
+								},
+								{
+									"key": "nickName",
+									"value": "bad dubny",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "malilo02",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3bcd8dae840619b0f53b87",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3bcd8dae840619b0f53b87"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c7f97c94c353e5c3f4dc7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c7f97c94c353e5c3f4dc7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un snippet del usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombreSnippet",
+									"value": "Snippet desde API",
+									"type": "text"
+								},
+								{
+									"key": "extension",
+									"value": "json",
+									"type": "text"
+								},
+								{
+									"key": "contenidoSnippet",
+									"value": "Contenido de prueba",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/snippet/crear-snippet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"snippet",
+								"crear-snippet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener snippets del usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/snippet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"snippet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un snippet del usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3bcd8dae840619b0f53b88/snippet/5f3c7f0eadbafb1c38a21d26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3bcd8dae840619b0f53b88",
+								"snippet",
+								"5f3c7f0eadbafb1c38a21d26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar un snippet del usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombreSnippet",
+									"value": "Ahora se llama diferente",
+									"type": "text"
+								},
+								{
+									"key": "extension",
+									"value": "jpg",
+									"type": "text"
+								},
+								{
+									"key": "contenidoSnippet",
+									"value": "Que tiene ahora?",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3bcd8dae840619b0f53b88/snippet/5f3c7f0eadbafb1c38a21d25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3bcd8dae840619b0f53b88",
+								"snippet",
+								"5f3c7f0eadbafb1c38a21d25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un snippet del usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/snippet/5f3c816b7f07c9118c0f9eba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"snippet",
+								"5f3c816b7f07c9118c0f9eba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener valores de las ventanas del usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/ventana",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"ventana"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar valores de las ventanas del usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "html",
+									"value": "Valores nuevos HTML",
+									"type": "text"
+								},
+								{
+									"key": "css",
+									"value": "Valores nuevos CSS",
+									"type": "text"
+								},
+								{
+									"key": "js",
+									"value": "Valores nuevos JS",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3bcd8dae840619b0f53b87/ventana",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3bcd8dae840619b0f53b87",
+								"ventana"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Carpeta",
+			"item": [
+				{
+					"name": "Crear una carpeta del usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombreCarpeta",
+									"value": "Carpeta creada desde API",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/carpeta/crear-carpeta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"carpeta",
+								"crear-carpeta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener carpetas del usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/carpeta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"carpeta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar una carpeta del usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombreCarpeta",
+									"value": "Se le cambió el nombre",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/carpeta/5f3c8606ba917112882241a4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"carpeta",
+								"5f3c8606ba917112882241a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar una carpeta del usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/usuario/5f3c814c7f07c9118c0f9eb9/carpeta/5f3c8606ba917112882241a4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"usuario",
+								"5f3c814c7f07c9118c0f9eb9",
+								"carpeta",
+								"5f3c8606ba917112882241a4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Proyecto",
+			"item": [
+				{
+					"name": "Crear un proyecto de la carpeta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombreProyecto",
+									"value": "Proyecto-desde-la-api",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/carpeta/5f3bccc1ae840619b0f53b81/proyecto/crear-proyecto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"carpeta",
+								"5f3bccc1ae840619b0f53b81",
+								"proyecto",
+								"crear-proyecto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener proyectos de la carpeta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/carpeta/5f3bccc1ae840619b0f53b80/proyecto/5f3bcbeaae840619b0f53b7c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"carpeta",
+								"5f3bccc1ae840619b0f53b80",
+								"proyecto",
+								"5f3bcbeaae840619b0f53b7c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar un proyecto de la carpeta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombreProyecto",
+									"value": "nuevo-nombre",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4321/carpeta/5f3bccc1ae840619b0f53b7f/proyecto/5f3bcbeaae840619b0f53b78",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"carpeta",
+								"5f3bccc1ae840619b0f53b7f",
+								"proyecto",
+								"5f3bcbeaae840619b0f53b78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un proyecto de la carpeta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4321/carpeta/5f3bccc1ae840619b0f53b7f/proyecto/5f3bcbeaae840619b0f53b78",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4321",
+							"path": [
+								"carpeta",
+								"5f3bccc1ae840619b0f53b7f",
+								"proyecto",
+								"5f3bcbeaae840619b0f53b78"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

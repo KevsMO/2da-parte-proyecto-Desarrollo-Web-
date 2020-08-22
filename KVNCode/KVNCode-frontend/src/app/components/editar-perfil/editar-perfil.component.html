@@ -2,46 +2,123 @@
     <div>
         <div class="mx-auto text-center">
             <span class="login-titulo mb-2">Actualizar datos</span>
-            <p class="mt-3 mb-4">Plan: Gratis - Limite de 10 proyectos</p>
+            <p class="mt-3 mb-4">{{textoPlan}}</p>
         </div>
         <div class="seccion-login my-auto mx-auto">
             <div>
-                <form action="#!">
+                <form [formGroup]="formEditPerfil">
                     <div class="form-group">
-                        <label for="input-nombre">Primer nombre</label>
-                        <input type="text" name="input-nombre" id="input-nombre" class="form-control" placeholder="Ingresa tu primer nombre">
+                        <label for="input-nombre">Primer nombre</label><br>
+                        <div style="display: flex;">
+                            <a *ngIf="icoVisible[0] == 'edit'" (click)="formEditPerfil.get('primerNombre').enable()" (click)="funcionEditar('editar', 0)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </a>
+                            <a *ngIf="icoVisible[0] == 'undo'" (click)="funcionEditar('deshacer', 0)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faUndo"></fa-icon>
+                            </a>
+                            <input type="text" class="form-control" placeholder="Ingresa tu primer nombre" [class]="claseDisable[0]" formControlName="primerNombre" [ngClass]="{'input-error': formEditPerfil.get('primerNombre').invalid && (formEditPerfil.get('primerNombre').dirty || formEditPerfil.get('primerNombre').touched)}">
+                        </div>
+                        <!-- Validaciones -->
+                        <div *ngIf="formEditPerfil.get('primerNombre').invalid && (formEditPerfil.get('primerNombre').dirty || formEditPerfil.get('primerNombre').touched)">
+                            <span *ngIf="formEditPerfil.get('primerNombre').errors.required" class="text-danger">Error: el nombre es requerido<br></span>
+                            <span *ngIf="formEditPerfil.get('primerNombre').invalid" class="text-danger">Error: el nombre debe tener 3 o más caracteres</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="input-apellido">Primer apellido</label>
-                        <input type="text" name="input-apellido" id="input-apellido" class="form-control" placeholder="Ingresa tu primer apellido">
+                        <div style="display: flex;">
+                            <a *ngIf="icoVisible[1] == 'edit'" (click)="formEditPerfil.get('primerApellido').enable()" (click)="funcionEditar('editar', 1)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button" >
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </a>
+                            <a *ngIf="icoVisible[1] == 'undo'" (click)="funcionEditar('deshacer', 1)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faUndo"></fa-icon>
+                            </a>
+                            <input type="text" class="form-control" placeholder="Ingresa tu primer apellido" [class]="claseDisable[1]" formControlName="primerApellido" [ngClass]="{'input-error': formEditPerfil.get('primerApellido').invalid && (formEditPerfil.get('primerApellido').dirty || formEditPerfil.get('primerApellido').touched)}">
+                        </div>
+                        <!-- Validaciones -->
+                        <div *ngIf="formEditPerfil.get('primerApellido').invalid && (formEditPerfil.get('primerApellido').dirty || formEditPerfil.get('primerApellido').touched)">
+                            <span *ngIf="formEditPerfil.get('primerApellido').errors.required" class="text-danger">Error: el nombre es requerido<br></span>
+                            <span *ngIf="formEditPerfil.get('primerApellido').invalid" class="text-danger">Error: el nombre debe tener 3 o más caracteres</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="email@ejemplo.com">
+                        <div style="display: flex;">
+                            <a *ngIf="icoVisible[2] == 'edit'" (click)="formEditPerfil.get('email').enable()" (click)="funcionEditar('editar', 2)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </a>
+                            <a *ngIf="icoVisible[2] == 'undo'" (click)="funcionEditar('deshacer', 2)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faUndo"></fa-icon>
+                            </a>
+                            <input type="email" class="form-control" placeholder="email@ejemplo.com" [class]="claseDisable[2]" formControlName="email" [ngClass]="{'input-error': formEditPerfil.get('email').invalid && (formEditPerfil.get('email').dirty || formEditPerfil.get('email').touched)}">
+                        </div>
+                        <!-- Validaciones -->
+                        <div *ngIf="formEditPerfil.get('email').invalid && (formEditPerfil.get('email').dirty || formEditPerfil.get('email').touched)">
+                            <span *ngIf="formEditPerfil.get('email').errors.required" class="text-danger">Error: el correo es requerido<br></span>
+                            <span *ngIf="formEditPerfil.get('email').invalid" class="text-danger">Error: el correo no es un correo válido</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="input-usuario">Nombre de usuario</label>
-                        <input type="text" name="input-usuario" id="input-usuario" class="form-control" placeholder="Crea tu nombre de usuario">
+                        <div style="display: flex;">
+                            <a *ngIf="icoVisible[3] == 'edit'" (click)="formEditPerfil.get('nickName').enable()" (click)="funcionEditar('editar', 3)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </a>
+                            <a *ngIf="icoVisible[3] == 'undo'" (click)="funcionEditar('deshacer', 3)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faUndo"></fa-icon>
+                            </a>
+                            <input type="text" class="form-control" placeholder="Crea tu nombre de usuario" [class]="claseDisable[3]" formControlName="nickName" [ngClass]="{'input-error': formEditPerfil.get('nickName').invalid && (formEditPerfil.get('nickName').dirty || formEditPerfil.get('nickName').touched)}">
+                        </div>
+                        <!-- Validaciones -->
+                        <div *ngIf="formEditPerfil.get('nickName').invalid && (formEditPerfil.get('nickName').dirty || formEditPerfil.get('nickName').touched)">
+                            <span *ngIf="formEditPerfil.get('nickName').errors.required" class="text-danger">Error: el nombre es requerido<br></span>
+                            <span *ngIf="formEditPerfil.get('nickName').invalid" class="text-danger">Error: el nombre debe tener 4 o más caracteres</span>
+                        </div>
                     </div>
                     <div class="form-group mb-4">
                         <label for="password">Contraseña</label>
-                        <div class="input-group" id="show_hide_password">
-                            <input [type]="inputs[0]" name="password" id="password" class="form-control" placeholder="Crea tu contraseña">
-                            <div class="input-group-addon">
-                                <a (click)="iconoRegistro()"><fa-icon [class]="clases[0]" [icon]="iconos[0]"></fa-icon></a>
+                        <div style="display: flex;">
+                            <a *ngIf="icoVisible[4] == 'edit'" (click)="habilitarContrasenias()" (click)="funcionEditar('editar', 4)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </a>
+                            <a *ngIf="icoVisible[4] == 'undo'" (click)="formEditPerfil.get('password').reset()" (click)="funcionEditar('deshacer', 4)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faUndo"></fa-icon>
+                            </a>
+                            <div class="input-group" id="show_hide_password">
+                                <input [type]="inputsPassword[0]" class="form-control" placeholder="Nueva Contraseña" [class]="claseDisable[4]" formControlName="password" [ngClass]="{'input-error': formEditPerfil.get('password').invalid && (formEditPerfil.get('password').dirty || formEditPerfil.get('password').touched)}">
+                                <div class="input-group-addon">
+                                    <a (click)="iconoRegistro()"><fa-icon [class]="clases[0]" [icon]="iconos[0]"></fa-icon></a>
+                                </div>
                             </div>
+                        </div>
+                        <!-- Validaciones -->
+                        <div *ngIf="formEditPerfil.get('password').invalid && (formEditPerfil.get('password').dirty || formEditPerfil.get('password').touched)">
+                            <span *ngIf="formEditPerfil.get('password').errors.required" class="text-danger">Error: la contraseña es requerida<br></span>
+                            <span *ngIf="formEditPerfil.get('password').invalid" class="text-danger">Error: la contraseña debe tener 7 o más caracteres</span>
                         </div>
                     </div>
                     <div class="form-group mb-4">
                         <label for="input-confir-contraseña">Confirmar contraseña</label>
-                        <div class="input-group" id="show_hide_password-confirm">
-                            <input [type]="inputs[1]" name="input-confir-contraseña" id="input-confir-contraseña" class="form-control" placeholder="Confirma tu contraseña">
-                            <div class="input-group-addon">
-                                <a (click)="iconoRegistro2()"><fa-icon [class]="clases[0]" [icon]="iconos[1]"></fa-icon></a>
+                        <div style="display: flex;">
+                            <a *ngIf="icoVisible[4] == 'edit'" (click)="habilitarContrasenias()" (click)="funcionEditar('editar', 4)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </a>
+                            <a *ngIf="icoVisible[4] == 'undo'" (click)="formEditPerfil.get('verificarPassword').reset()" (click)="funcionEditar('deshacer', 4)" class="btn btn-sm btn-primary btn-editar mr-2 my-auto" style="display:flex; height: 30px;" role="button">
+                                <fa-icon [icon]="faUndo"></fa-icon>
+                            </a>
+                            <div class="input-group" id="show_hide_password-confirm">
+                                <input [type]="inputsPassword[1]" class="form-control" placeholder="Confirma tu nueva contraseña" [class]="claseDisable[4]" formControlName="verificarPassword" [ngClass]="{'input-error': ((formEditPerfil.get('verificarPassword').value != formEditPerfil.get('password').value) && formEditPerfil.get('password').valid) && (formEditPerfil.get('verificarPassword').dirty || formEditPerfil.get('verificarPassword').touched)}">
+                                <div class="input-group-addon">
+                                    <a (click)="iconoRegistro2()"><fa-icon [class]="clases[1]" [icon]="iconos[1]"></fa-icon></a>
+                                </div>
                             </div>
                         </div>
+                        <!-- Validaciones -->
+                        <div *ngIf="((formEditPerfil.get('verificarPassword').value != formEditPerfil.get('password').value) && formEditPerfil.get('password').valid) && (formEditPerfil.get('verificarPassword').dirty || formEditPerfil.get('verificarPassword').touched)">
+                            <span *ngIf="formEditPerfil.get('verificarPassword').value != formEditPerfil.get('password').value" class="text-danger">Error: las contraseñas no coinciden</span>
+                        </div>
                     </div>
-                    <input name="actualizar" id="btn-actualizar" class="btn btn-block actualizar-btn" type="button" value="Actualizar">
+                    <input (click)="actualizarDatos()" class="btn btn-block actualizar-btn" type="button" value="Actualizar" [disabled]="(!formEditPerfil.valid) || formEditPerfil.get('verificarPassword').value != formEditPerfil.get('password').value">
                 </form>
             </div>
         </div>
