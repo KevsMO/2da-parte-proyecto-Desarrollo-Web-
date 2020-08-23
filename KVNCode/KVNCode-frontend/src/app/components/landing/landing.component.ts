@@ -70,7 +70,7 @@ export class LandingComponent implements OnInit {
         {
           titulo: 'Snippets de Código',
           texto: 'Puedes crear Snippets de código para que puedas reutilizarlos cuando quieras, ahorrándote tiempo y trabajo!',
-          imagen: '../../../assets/images/hero-landing.png'
+          imagen: '../../../assets/images/snippets.png'
         },
         {
           titulo: 'Descargar Archivos',

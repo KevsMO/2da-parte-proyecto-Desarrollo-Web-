@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { faFolder, faTrash, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import { MyserviceService } from '../../myservice.service'
+import { UsuariosService } from '../../services/usuarios.service';
+import { ActivatedRoute } from '@angular/router';
+
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-carpetas',
@@ -10,11 +16,27 @@ import { MyserviceService } from '../../myservice.service'
 
 export class CarpetasComponent implements OnInit {
 
-  constructor(
-    protected myService: MyserviceService
-  ) { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
+  usuarioActual:any = {};
+  snippets:any;
+  nombresSnippets:any = [];
+  idSnippets:any = [];
+
+  constructor(
+    protected myService: MyserviceService,
+    public authService: UsuariosService,
+    private actRoute: ActivatedRoute,
+    private modalService: NgbModal
+  ) {
+    let id = this.actRoute.snapshot.paramMap.get('id');
+    this.authService.obtenerUnUsuario(id).subscribe(res => {
+      this.usuarioActual = res.msg;
+      this.snippets = this.usuarioActual.snippets;
+      // this.llenarSippets();
+      let datos = {_id: res.msg._id, nickName: res.msg.nickName, plan: res.msg.plan};
+      localStorage.setItem('datos', JSON.stringify(datos));
+    });
   }
 
   faFolder = faFolder; 

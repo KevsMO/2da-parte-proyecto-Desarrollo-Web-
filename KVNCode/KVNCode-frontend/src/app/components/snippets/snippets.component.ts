@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faStickyNote, faTrash, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { MyserviceService } from '../../myservice.service';
@@ -14,37 +14,35 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./snippets.component.css']
 })
 export class SnippetsComponent implements OnInit {
+
+  ngAfterViewInit() { }
+
+  ngOnInit(): void { }
   
   formSnippet = new FormGroup({
     nombreSnippet: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    extension: new FormControl('', [Validators.required])
+    extension: new FormControl('', [Validators.required]),
+    contenidoSnippet: new FormControl('')
   });
 
-  @ViewChild('editor') editor;
+  contenidoSnippet = '';
+  modoSnippet;
+  optionsSnippet:any = {wrap: true, autoScrollEditorIntoView: true, enableBasicAutocompletion: true, enableLiveAutocompletion: true, enableSnippets: true};
 
-  ngAfterViewInit() {
-    console.log(this.editor);
-    // this.snippetEditor.getEditor().setOptions({
-    //   wrap: true,
-    //   autoScrollEditorIntoView: true,
-    //   enableBasicAutocompletion: true,
-    //   enableLiveAutocompletion: true,
-    //   enableSnippets: true,
-    // });
-    // this.snippetEditor.mode = 'html';
-  }
-
-  ngOnInit(): void {
-    
-  }
-
-  modo(){
-    console.log(this.editor.value);
+  establecerModo(){
+    try {
+      this.modoSnippet = this.formSnippet.get('extension').value;
+    } catch (error) {
+      if(error != null){
+        this.formSnippet.get('extension').setErrors({invalid: true});
+      }
+    }
   }
 
   usuarioActual:any = {};
   snippets:any;
   nombresSnippets:any = [];
+  idSnippets:any = [];
 
   constructor(
     protected myService: MyserviceService,
@@ -63,18 +61,88 @@ export class SnippetsComponent implements OnInit {
   }
 
   guardarSnippet() {
-
+    this.formSnippet.get('contenidoSnippet').setValue(this.contenidoSnippet);
+    let id = this.actRoute.snapshot.paramMap.get('id');
+    this.authService.crearSnippet(id, this.formSnippet.value).subscribe(
+      res => {
+        this.authService.obtenerUnUsuario(id).subscribe(res => {
+          this.usuarioActual = res.msg;
+          this.snippets = this.usuarioActual.snippets;
+          this.llenarSippets();
+          this.formSnippet.reset();    
+        });
+    });
   }
 
+  snippetParaVer:any = {};
+  actualizarNombre = '';
+  actualizarExtension = '';
+  actualizarContenido = '';
+  verSnippet(id, modalVerSnippet) {
+    if(this.verModalSnippet) {
+      let idUsuario = this.actRoute.snapshot.paramMap.get('id');
+      this.authService.obtenerSnippet(idUsuario, id).subscribe(
+        res => {
+          this.snippetParaVer = res.snippets[0];
+          this.actualizarNombre = res.snippets[0].nombreSnippet;
+          this.actualizarExtension = res.snippets[0].extension;
+          this.actualizarContenido = res.snippets[0].contenidoSnippet;
+          this.open(modalVerSnippet, 'lg');
+        }
+      );
+    }
+  }
+  
+  actualizarSnippet() {
+    let id = this.actRoute.snapshot.paramMap.get('id');
+    let datos = {nombreSnippet: this.actualizarNombre, extension: this.actualizarExtension, contenidoSnippet: this.actualizarContenido}
+    this.authService.actualizarSnippet(id, this.snippetParaVer._id, datos).subscribe(
+      res => {
+        this.authService.obtenerSnippet(id, this.snippetParaVer._id).subscribe(
+          res => {
+            this.snippetParaVer = res.snippets[0];
+        });
+    });
+  }
+
+  preguntar(idSnippet, modal) {
+    this.verModalSnippet = false;
+    let idUsuario = this.actRoute.snapshot.paramMap.get('id');
+    this.authService.obtenerSnippet(idUsuario, idSnippet).subscribe(
+      res => {
+        this.snippetParaVer = res.snippets[0];
+        this.open(modal, 'lg');
+    });
+  }
+
+  verModalSnippet = true;
+  eliminarSnippet() {
+    this.verModalSnippet = true;
+    let idUsuario = this.actRoute.snapshot.paramMap.get('id');
+    this.authService.eliminarSnippet(idUsuario, this.snippetParaVer._id).subscribe(
+      res => {
+        this.authService.obtenerUnUsuario(idUsuario).subscribe(res => {
+          this.usuarioActual = res.msg;
+          this.snippets = this.usuarioActual.snippets;
+          this.llenarSippets(); 
+        });
+    });
+  }
 
   open(modal, size) {
-    this.modalService.open(modal, {size: size});
-    
+    this.modalService.open(modal, {size: size}).result.then((result) => {
+      this.verModalSnippet = true;
+    }, (reason) => {
+      this.verModalSnippet = true;
+    });    
   }
 
   llenarSippets() {
+    this.nombresSnippets = [];
+    this.idSnippets = [];
     for (let i = 0; i < this.snippets.length; i++) {
       this.nombresSnippets.push(this.snippets[i].nombreSnippet);
+      this.idSnippets.push(this.snippets[i]._id);
     }
   }
 

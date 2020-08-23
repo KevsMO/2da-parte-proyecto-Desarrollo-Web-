@@ -6,12 +6,11 @@
                 <fa-icon class="my-auto mx-auto p-0" [icon]="faPlus" style="font-size: 25px; display: inline-block;"></fa-icon>
             </div>
         </div>
-        <div *ngFor="let nombreSnippet of (nombresSnippets | filter:search) as folder; let i = index" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
-            <div class="contenedor-snippets text-left" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
+        <div *ngFor="let nombreSnippet of (nombresSnippets | filter:search) as folder; let i = index"  class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+            <div class="contenedor-snippets text-left" (click)="verSnippet(idSnippets[i], modalVerSnippet)" (mouseover)="verIconos(i)" (mouseout)="ocultarIconos(i)">
                 <fa-icon class="my-auto mr-2 ver-icono" [icon]="faStickyNote" style="font-size: 25px;"></fa-icon>
                 <p [ngbTooltip]="tipSnippet" placement="bottom" class="my-auto text-truncate mr-2">{{nombreSnippet}}</p>
-                <fa-icon [ngbTooltip]="tipEdit" placement="left" class="ml-auto my-auto mr-3 icono" [icon]="faEdit" [class]="verIcono[i]"></fa-icon>
-                <fa-icon [ngbTooltip]="tipTrash" placement="left" class="my-auto icono" [icon]="faTrash" [class]="verIcono[i]"></fa-icon>
+                <fa-icon [ngbTooltip]="tipTrash" placement="left" class="ml-auto my-auto icono" [icon]="faTrash" [class]="verIcono[i]" (click)="preguntar(idSnippets[i], modalBorrarSnippet)"></fa-icon>
             </div>
             <ng-template id="tipSnippet" #tipSnippet>{{nombreSnippet}}</ng-template>
             <ng-template #tipEdit>Editar el nombre del snippet</ng-template>
@@ -46,21 +45,81 @@
                         <span style="font-size: 1rem" *ngIf="formSnippet.get('nombreSnippet').invalid" class="text-danger">Error: el nombre debe tener 3 o más caracteres</span>
                     </div>
 
-                    <label for="input-extension">Extensión del snippet (no colocar punto al inicio)</label>
-                    <input (keyup)="modo()" type="text" formControlName="extension" required name="input-extension" class="form-control" [ngClass]="{'input-error': formSnippet.get('extension').invalid && (formSnippet.get('extension').dirty || formSnippet.get('extension').touched)}" placeholder="Ingresa la extensión (sin el punto - . - inicial)">
+                    <label class="mt-3" for="input-extension">Extensión del snippet (no colocar punto al inicio)</label>
+                    <input (keyup)="establecerModo()" type="text" formControlName="extension" required name="input-extension" class="form-control" [ngClass]="{'input-error': formSnippet.get('extension').invalid && (formSnippet.get('extension').dirty || formSnippet.get('extension').touched)}" placeholder="Ejemplo: javascript, php, css, html, python, etc...">
                     <!-- Validaciones -->
                     <div *ngIf="formSnippet.get('extension').invalid && (formSnippet.get('extension').dirty || formSnippet.get('extension').touched)">
-                        <span style="font-size: 1rem" *ngIf="formSnippet.get('extension').errors.required" class="text-danger">Error: la extensión es requerido<br></span>
+                        <span style="font-size: 1rem" *ngIf="formSnippet.get('extension').invalid" class="text-danger">Error: la extensión especificada no es correcta<br></span>
                     </div>
 
-                    <ace-editor (keyUp)="modo()" #editor class="contenedor-ace mt-3" style="height: 200px;" ></ace-editor>
+                    <label class="mt-3" for="input-extension">Contenido</label>
+                    <div ace-editor class="mt-3" #editor
+                        [(text)]="contenidoSnippet"
+                        [mode]="modoSnippet"
+                        [options]="optionsSnippet"
+                        [readOnly]="false"
+                        [autoUpdateContent]="true"
+                        style="min-height: 260px; width:100%; overflow: auto; margin-top: 0 !important">
+                    </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="modo()">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarSnippet()" (click)="modal.close('Close click')" value="Guardar" [disabled]="(!formSnippet.valid)">Guardar</button>
     </div>
 </ng-template>
 <!-- Fin modal nuevo snippet -->
+
+<!-- Modal ver snippet -->
+<ng-template #modalVerSnippet let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{snippetParaVer.nombreSnippet}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <label class="mt-3" for="input-extension">Aquí puedes cambiar el nombre</label>
+                <input type="text" [(ngModel)]="actualizarNombre" name="input-nombre" class="form-control" placeholder="Cambiar el nombre del snippet">
+                <hr>
+                <label class="mt-3" for="input-extension">Aquí puedes cambiar la extensión</label>
+                <input type="text" [(ngModel)]="actualizarExtension" name="input-nombre" class="form-control" placeholder="Cambiar la extensiión del snippet">
+                <hr>
+                <div ace-editor class="mt-3" #editor
+                    [(text)]="actualizarContenido"
+                    [mode]="snippetParaVer.extension"
+                    [options]="optionsSnippet"
+                    [autoUpdateContent]="true"
+                    style="min-height: 400px; width:100%; overflow: auto; margin-top: 0 !important">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Salir</button>
+        <button type="button" class="btn btn-primary" (click)="actualizarSnippet()" (click)="modal.close('Close click')" value="Guardar cambios">Guardar cambios</button>
+    </div>
+</ng-template>
+<!-- Fin modal ver snippet -->
+
+<!-- Modal eliminar snippet -->
+<ng-template #modalBorrarSnippet let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Estás seguro que quieres eliminar el snippet:<br><span style="font-weight: bold;">{{snippetParaVer.nombreSnippet}}</span></h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+       
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="verModalSnippet = true" (click)="modal.close('Close click')">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="eliminarSnippet()" (click)="modal.close('Close click')" value="Eliminar">Eliminar</button>
+    </div>
+</ng-template>
+<!-- Fin modal eliminar snippet -->

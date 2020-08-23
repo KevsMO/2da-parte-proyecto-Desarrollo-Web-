@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pestaniaActiva;
 
   ngOnInit(): void {
-    this.cambiarPestania(3);
+    this.cambiarPestania(0);
   }
 
   ngOnDestroy() {

@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { faProjectDiagram, faTrash, faEdit,faPlus } from '@fortawesome/free-solid-svg-icons';
-import { MyserviceService } from '../../myservice.service'
+
+import { MyserviceService } from '../../myservice.service';
+import { UsuariosService } from '../../services/usuarios.service';
+import { ProyectosService } from '../../services/proyectos.service';
+import { ActivatedRoute } from '@angular/router';
+
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-proyectos',
@@ -10,9 +17,52 @@ import { MyserviceService } from '../../myservice.service'
 
 export class ProyectosComponent implements OnInit {
 
+  usuarioActual:any = {};
+  carpetas:any;
+  idCarpetas:any = [];
+  proyectosPorCarpeta:any = [];
+  proyectosTatales:any = [];
+  nombresproyectos:any = [];
+  idProyectos:any = [];
+
+  verTodasCarpetas = true;
+
   constructor(
-    protected myService: MyserviceService
-  ) { }
+    protected myService: MyserviceService,
+    public authService: UsuariosService,
+    public proyService: ProyectosService,
+    private actRoute: ActivatedRoute,
+    private modalService: NgbModal
+  ) {
+
+    if(this.verTodasCarpetas){
+      let id = this.actRoute.snapshot.paramMap.get('id');
+      this.authService.obtenerUnUsuario(id).subscribe(res => {
+        this.usuarioActual = res.msg;
+        this.idCarpetas = this.usuarioActual.carpetas;
+        console.log(this.idCarpetas);
+        let datos = {_id: res.msg._id, nickName: res.msg.nickName, plan: res.msg.plan};
+        localStorage.setItem('datos', JSON.stringify(datos));
+
+        for (let i = 0; i < this.idCarpetas.length; i++) {
+          this.proyService.obtenerProyectos(this.idCarpetas[i]).subscribe(res => {
+            this.proyectosPorCarpeta.push(res[0].proyectos);
+            console.log(this.proyectosPorCarpeta);
+          });
+
+        for (let i = 0; i < this.proyectosPorCarpeta.length; i++)
+          // for (let j = 0; j < this.proyectosPorCarpeta[i].length; j++) {
+            this.proyectosTatales = this.proyectosPorCarpeta[i].map(element => {
+              return element
+            });
+            console.log(this.proyectosTatales);
+            
+          // }  
+        
+        }
+      });
+    }
+  }
 
   faProjectDiagram = faProjectDiagram; 
   faTrash = faTrash;

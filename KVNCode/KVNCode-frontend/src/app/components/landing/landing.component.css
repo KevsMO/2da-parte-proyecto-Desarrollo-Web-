@@ -67,6 +67,12 @@ main {
     background-color: rgb(230, 228, 228);
 }
 
+.card-img-top {
+    object-fit: cover;
+    object-position: center;
+    min-height: 200px;
+}
+
 .card-footer{
     background-color: rgb(238, 236, 236);
 }
@@ -105,4 +111,11 @@ main {
 .greeting {
     max-width: 85px;
     font: 20px "Lato", sans-serif;
+}
+
+/* @media screen and (max-width: 767px) */
+@media screen and (max-width: 954px) {
+    .card-img-top {
+        min-height: 100px;
+    }
 }

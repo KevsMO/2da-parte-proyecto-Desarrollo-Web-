@@ -143,24 +143,9 @@ router.post('/:idUsuario/snippet/crear-snippet', (req, res) => {
                     nombreSnippet: req.body.nombreSnippet,
                     extension: req.body.extension,
                     contenidoSnippet: req.body.contenidoSnippet
-                }
+                } 
             }
         }
-    ).then(result => {
-        res.send(result);
-        res.end();
-    }).catch(error => {
-        res.send(error);
-        res.end();
-    });
-});
-
-// Obtener snippets del usuario
-//http://localhost:4321/usuario/idUsuario/snippet
-router.route('/:idUsuario/snippet').get((req, res) => {
-    userSchema.find(
-        {_id: mongoose.Types.ObjectId(req.params.idUsuario)},
-        {snippets:true}
     ).then(result => {
         res.send(result);
         res.end();
@@ -177,7 +162,7 @@ router.route('/:idUsuario/snippet/:idSnippet').get((req, res) => {
         {_id: mongoose.Types.ObjectId(req.params.idUsuario), 'snippets._id': mongoose.Types.ObjectId(req.params.idSnippet)},
         {'snippets.$':true}
     ).then(result => {
-        res.send(result);
+        res.send(result[0]);
         res.end();
     }).catch(error => {
         res.send(error);
@@ -256,6 +241,25 @@ module.exports = router;
 //             })
 //         }
 //     })
+// });
+
+
+// /* Seccion para Snippets
+// --------------------------------------------------------*/
+
+// // Obtener snippets del usuario
+// //http://localhost:4321/usuario/idUsuario/snippet
+// router.route('/:idUsuario/snippet').get((req, res) => {
+//     userSchema.find(
+//         {_id: mongoose.Types.ObjectId(req.params.idUsuario)},
+//         {snippets:true}
+//     ).then(result => {
+//         res.send(result);
+//         res.end();
+//     }).catch(error => {
+//         res.send(error);
+//         res.end();
+//     });
 // });
 
 

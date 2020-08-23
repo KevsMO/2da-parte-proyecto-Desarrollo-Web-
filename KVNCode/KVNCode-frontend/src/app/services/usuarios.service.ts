@@ -62,6 +62,26 @@ export class UsuariosService {
     return this.httpClient.put(`${this.endpoint}/${id}`, datos);
   }
 
+  //Crear un snippet del usuario
+  crearSnippet(id, datos): Observable<any> {
+    return this.httpClient.post(`${this.endpoint}/${id}/snippet/crear-snippet`, datos);
+  }
+
+  //obtener un snippet del usuario
+  obtenerSnippet(idUsuario, idSnippet): Observable<any> {
+    return this.httpClient.get(`${this.endpoint}/${idUsuario}/snippet/${idSnippet}`);
+  }
+
+  //Actualizar un snippet del usuario
+  actualizarSnippet(idUsuario, idSnippet, datos): Observable<any> {
+    return this.httpClient.put(`${this.endpoint}/${idUsuario}/snippet/${idSnippet}`, datos);
+  }
+
+  //Eliminar un snippet del usuario
+  eliminarSnippet(idUsuario, idSnippet): Observable<any> {
+    return this.httpClient.delete(`${this.endpoint}/${idUsuario}/snippet/${idSnippet}`);
+  }
+
   getToken() {
     return localStorage.getItem('access_token');
   }
